@@ -11,6 +11,7 @@ from ..schemas.base import (
     PaginationResponse,
     PaginationParams,
 )
+from ..services.predictions import calculate_player_year_prediction
 import math
 
 router = APIRouter(prefix="/players", tags=["Current NBA Players"])
@@ -260,4 +261,32 @@ async def get_players_by_team(
     raise HTTPException(
         status_code=404,
         detail={"message": f"Players from {normalized_abb} not found."},
+    )
+
+@router.get(
+    "/{id}/predictions/season",
+    status_code=200,
+    responses={
+        404: {
+            "model": ErrorResponseDict,
+            "description": "Actual NBA player with id xx not found.",
+        }
+    },
+    dependencies=[rate_limit(60, 60)],
+)
+async def get_nba_player_year_prediction(
+    id: Annotated[
+        int, Path(gt=10, lt=10000000, title="ID from the player who will be fetched")
+    ],
+    db: DbDependency,
+    redis: RedisDependency,
+):
+    np = db["players"]
+    player = await np.find_one({"_id": id})
+    if player:
+        prediction_data = {"player_id": player.get("_id"), "age": player.get("age")}
+        prediction = await calculate_player_year_prediction(player=prediction_data)
+        return {"message": "Player prediction successfully calculated.", "data": {"prediction": prediction}}
+    raise HTTPException(
+        status_code=404, detail={"message": f"Player with id {id} not found."}
     )
