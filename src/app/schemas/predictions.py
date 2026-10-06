@@ -21,6 +21,8 @@ class ConfidenceIntervals(TypedDict):
     pts_range: list[float]
     ast_range: list[float]
     reb_range: list[float]
+    stl_range: list[float]
+    blk_range: list[float]
 
 
 class Params(TypedDict):
@@ -28,11 +30,9 @@ class Params(TypedDict):
     age_adjustment_pct: str
 
 
-class YearPrediction(BaseModel):
+class SeasonPrediction(BaseModel):
     player_id: int
     full_name: str
-    target_season: str
-    projected_games_played: int
     projected_averages: ProjectedAvg
     confidence_intervals: ConfidenceIntervals
     params: Params

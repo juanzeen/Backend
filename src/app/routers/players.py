@@ -5,13 +5,14 @@ from ..utils.cache import get_cached_or_db
 from ..utils.rate_limiter import rate_limit
 from ..schemas.players import Player
 from ..schemas.player_seasons import PlayerSeason
+from ..schemas.predictions import SeasonPrediction
 from ..schemas.base import (
     ResponseDict,
     ErrorResponseDict,
     PaginationResponse,
     PaginationParams,
 )
-from ..services.predictions import calculate_player_year_prediction
+from ..services.predictions import calculate_player_year_prediction, calculate_confidence_intervals
 import math
 
 router = APIRouter(prefix="/players", tags=["Current NBA Players"])
@@ -263,6 +264,7 @@ async def get_players_by_team(
         detail={"message": f"Players from {normalized_abb} not found."},
     )
 
+
 @router.get(
     "/{id}/predictions/season",
     status_code=200,
@@ -280,13 +282,29 @@ async def get_nba_player_year_prediction(
     ],
     db: DbDependency,
     redis: RedisDependency,
-):
+) -> ResponseDict[SeasonPrediction] | ErrorResponseDict:
     np = db["players"]
     player = await np.find_one({"_id": id})
     if player:
         prediction_data = {"player_id": player.get("_id"), "age": player.get("age")}
-        prediction = await calculate_player_year_prediction(player=prediction_data)
-        return {"message": "Player prediction successfully calculated.", "data": {"prediction": prediction}}
+        prediction, age_factor = await calculate_player_year_prediction(
+            player=prediction_data
+        )
+        confidence_intervals = calculate_confidence_intervals(prediction)
+        data = {
+            "player_id": player.get("_id"),
+            "full_name": player.get("full_name"),
+            "projected_averages": prediction,
+            "confidence_intervals": confidence_intervals,
+            "params": {
+                "age": player.get("age"),
+                "age_adjustment_pct": f"{age_factor*100}%",
+            },
+        }
+        return {
+            "message": "Player prediction successfully calculated.",
+            "data": data,
+        }
     raise HTTPException(
         status_code=404, detail={"message": f"Player with id {id} not found."}
     )
