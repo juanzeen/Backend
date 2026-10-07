@@ -4,6 +4,7 @@ from ..schemas.player_seasons import AvgStats
 
 
 def calculate_age_factor(age: int):
+    """Calculate the age factor for marcel projection"""
     age_factor = 1.0
     if age < 27:
         age_factor = 1 + ((27 - age) * 0.006)
@@ -13,6 +14,7 @@ def calculate_age_factor(age: int):
 
 
 def calculate_marcel_projection(averages: list[AvgStats], age: int):
+    """Uses the marcel projection, with a sum of weighted averages from the past 3 seasons multiplied with the age factor"""
     dict = {}
     age_factor = calculate_age_factor(age)
     for i, _ in enumerate(averages[0].keys()):
@@ -26,6 +28,7 @@ def calculate_marcel_projection(averages: list[AvgStats], age: int):
 
 
 async def calculate_player_year_prediction(*, player: PlayerInfos):
+    """Calculate the season prediction for a specific player"""
     player_id = player.get("player_id")
     age = player.get("age")
     db = get_db()
@@ -43,6 +46,7 @@ async def calculate_player_year_prediction(*, player: PlayerInfos):
 
 
 def calculate_confidence_intervals(expected: dict[str, float]):
+    """Calculates confidence intervals for a year prediction, with specific multipliers for each stat"""
     print(expected)
     margin_list = [0.1, 0.15, 0.12, 0.2, 0.2]
     label_list = ["pts_range", "ast_range", "reb_range", "stl_range", "blk_range"]

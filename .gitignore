@@ -229,3 +229,5 @@ seed/notebook.py
 seed/*.json
 schemas.md
 seasons_dump/
+docs
+docs/

@@ -5,14 +5,18 @@ from ..utils.cache import get_cached_or_db
 from ..utils.rate_limiter import rate_limit
 from ..schemas.players import Player
 from ..schemas.player_seasons import PlayerSeason
-from ..schemas.predictions import SeasonPrediction
+from ..schemas.predictions import SeasonPrediction, MatchupPrediction
 from ..schemas.base import (
     ResponseDict,
     ErrorResponseDict,
     PaginationResponse,
     PaginationParams,
 )
-from ..services.predictions import calculate_player_year_prediction, calculate_confidence_intervals
+from ..services.season_predictor import (
+    calculate_player_year_prediction,
+    calculate_confidence_intervals,
+)
+from ..services.matchup_predictor import calculate_matchup_prediction
 import math
 
 router = APIRouter(prefix="/players", tags=["Current NBA Players"])
@@ -274,14 +278,12 @@ async def get_players_by_team(
             "description": "Actual NBA player with id xx not found.",
         }
     },
-    dependencies=[rate_limit(60, 60)],
 )
 async def get_nba_player_year_prediction(
     id: Annotated[
         int, Path(gt=10, lt=10000000, title="ID from the player who will be fetched")
     ],
     db: DbDependency,
-    redis: RedisDependency,
 ) -> ResponseDict[SeasonPrediction] | ErrorResponseDict:
     np = db["players"]
     player = await np.find_one({"_id": id})
@@ -298,13 +300,55 @@ async def get_nba_player_year_prediction(
             "confidence_intervals": confidence_intervals,
             "params": {
                 "age": player.get("age"),
-                "age_adjustment_pct": f"{age_factor*100}%",
+                "age_adjustment_pct": f"{age_factor * 100}%",
             },
         }
         return {
-            "message": "Player prediction successfully calculated.",
+            "message": "Player season prediction successfully calculated.",
             "data": data,
         }
     raise HTTPException(
         status_code=404, detail={"message": f"Player with id {id} not found."}
     )
+
+
+@router.get(
+    "/{id}/predictions/matchup/{opponent_team_id}",
+    status_code=200,
+    responses={
+        404: {
+            "model": ErrorResponseDict,
+            "description": "Actual NBA player with id xx not found.",
+        }
+    },
+)
+async def get_player_matchup_prediction(
+    id: Annotated[
+        int, Path(gt=10, lt=10000000, title="ID from the player who will be fetched")
+    ],
+    opponent_team_id: Annotated[
+        int, Path(gt=999999999, title="ID from the team who will be fetched")
+    ],
+    db: DbDependency,
+    is_home: Annotated[
+        bool, Query(title="Determines if the player will play at home or away")
+    ] = True,
+) -> ResponseDict[MatchupPrediction] | ErrorResponseDict:
+    np = db["players"]
+    nt = db["teams"]
+    player = await np.find_one({"_id": id})
+    team = await nt.find_one({"_id": opponent_team_id})
+    if not player:
+        raise HTTPException(
+            status_code=404, detail={"message": f"Player with id {id} not found."}
+        )
+    if not team:
+        raise HTTPException(
+            status_code=404, detail={"message": f"Team with id {id} not found."}
+        )
+
+    prediction = calculate_matchup_prediction(player, team, is_home)
+    return {
+        "data": prediction,
+        "message": f"Player with id {id} matchup against team {opponent_team_id} succesfully retrieved",
+    }
