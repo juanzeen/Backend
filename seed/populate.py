@@ -674,7 +674,7 @@ def populate_players_age():
 
 def populate_teams():
     col = get_db_collection("teams")
-    with open("normalized_teams_data.json", "r") as f:
+    with open("full_data_teams_v2.json", "r") as f:
         teams = json.load(f)
         col.insert_many(teams)
         f.close()

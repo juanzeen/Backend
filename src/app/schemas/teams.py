@@ -25,6 +25,18 @@ class Metrics(TypedDict):
     net_rating: Optional[float]
     pts_per_game: Optional[float]
     pts_allowed_per_game: Optional[float]
+    ast_per_game: Optional[float]
+    ast_allowed_per_game: Optional[float]
+    reb_per_game: Optional[float]
+    reb_allowed_per_game: Optional[float]
+    dreb_per_game: Optional[float]
+    dreb_allowed_per_game: Optional[float]
+    oreb_per_game: Optional[float]
+    oreb_allowed_per_game: Optional[float]
+    stl_per_game: Optional[float]
+    stl_allowed_per_game: Optional[float]
+    blk_per_game: Optional[float]
+    blk_allowed_per_game: Optional[float]
 
 
 class SeasonStats(TypedDict):
