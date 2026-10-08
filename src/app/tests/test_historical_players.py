@@ -28,7 +28,7 @@ mocked_historical_player = {
     "country": "USA",
     "position": "Center-Forward",
     "is_active": False,
-    "honors": {"mvps": 0, "finals_mvps": 0, "all_stars": 7},
+    "honors": {"mvps": 0, "finals_mvps": 0, "all_stars": 7, "championships": 0},
     "seasons": [
         {
             "season_year": "2006-07",
@@ -75,7 +75,7 @@ mocked_historical_player_2 = {
     "slug": "yao-ming",
     "height": 229,
     "country": "China",
-    "honors": {"mvps": 0, "finals_mvps": 0, "all_stars": 6},
+    "honors": {"mvps": 0, "finals_mvps": 0, "all_stars": 6, "championships": 0},
     "is_active": False,
     "position": "Center",
     "seasons": [

@@ -30,6 +30,7 @@ class Honors(TypedDict):
     all_stars: int
     mvps: int
     finals_mvps: int
+    championships: int
 
 
 class Season(TypedDict):
@@ -47,6 +48,7 @@ class HistoricalPlayer(BaseModel):
     id: PyObjectId = Field(default=None, alias="_id")
     full_name: str
     slug: str
+    country: str
     position: str
     height: int
     career_span: str

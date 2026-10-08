@@ -212,7 +212,7 @@ def populate_historical_players():
                     "mvps": clean_int(row.get("MVPs")),
                     "finals_mvps": clean_int(row.get("Finals MVPs")),
                     "all_stars": clean_int(row.get("All-Star Appearances")),
-                    "championships": clean_int(row.get("Championships"))
+                    "championships": clean_int(row.get("Championships")),
                 },
             }
 
@@ -682,9 +682,9 @@ def populate_teams():
 
 
 # populate_historical_records()
-populate_historical_players()
-populate_historical_players_seasons()
+#populate_historical_players()
+#populate_historical_players_seasons()
 # populate_nba_players()
 # populate_player_seasons()
 # populate_players_age()
-#populate_teams()
+# populate_teams()

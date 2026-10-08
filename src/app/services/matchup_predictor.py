@@ -115,6 +115,7 @@ def calculate_home_modifier(stat: str, is_home: bool = True) -> float:
     multiplier = 1.0 if is_home else -1.0
     return round(HOME_MODIFIERS.get(stat, 0.0) * multiplier, 2)
 
+
 def calculate_single_stat_projection(
     baseline: float,
     pace_factor: float,
@@ -145,7 +146,7 @@ def calculate_confidence_intervals(
 def calculate_matchup_prediction(
     player_data: Player | dict[str, Any],
     team_data: Team | dict[str, Any],
-    is_home: bool = True
+    is_home: bool = True,
 ) -> dict[str, Any]:
     """
     Calculate single-game matchup prediction for an NBA player against an opponent team.

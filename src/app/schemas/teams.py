@@ -18,7 +18,7 @@ class PowerRanking(TypedDict):
     trend: Optional[str]
 
 
-class Metrics(TypedDict):
+class Metrics(TypedDict, total=False):
     pace: Optional[float]
     offensive_rating: Optional[float]
     defensive_rating: Optional[float]
