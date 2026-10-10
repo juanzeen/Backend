@@ -63,7 +63,7 @@ async def get_teams(
             "description": "Team with ID xxxx not found.",
         }
     },
-    dependencies=[rate_limit(60,60)]
+    dependencies=[rate_limit(60, 60)],
 )
 async def get_team_by_id(
     id: Annotated[
@@ -74,7 +74,7 @@ async def get_team_by_id(
         ),
     ],
     db: DbDependency,
-    redis: RedisDependency
+    redis: RedisDependency,
 ) -> ResponseDict[Team] | ErrorResponseDict:
     tc = db["teams"]
     cache_key = f"teams:id:{id}"
@@ -89,13 +89,16 @@ async def get_team_by_id(
     )
 
 
-@router.get("/search/{abb}/", responses={
+@router.get(
+    "/search/{abb}/",
+    responses={
         404: {
             "model": ErrorResponseDict,
             "description": "Team with abbreviation XXX not found.",
         }
     },
-    dependencies=[rate_limit(60,60)])
+    dependencies=[rate_limit(60, 60)],
+)
 async def get_team_by_abbreviation(
     abb: Annotated[
         str,
@@ -106,11 +109,13 @@ async def get_team_by_abbreviation(
         ),
     ],
     db: DbDependency,
-    redis: RedisDependency
+    redis: RedisDependency,
 ) -> ResponseDict[Team] | ErrorResponseDict:
     tc = db["teams"]
-    cache_key=f"teams:abb:{abb.upper()}"
-    team = await get_cached_or_db(redis, cache_key, tc.find_one({"abbreviation": abb}), 7200)
+    cache_key = f"teams:abb:{abb.upper()}"
+    team = await get_cached_or_db(
+        redis, cache_key, tc.find_one({"abbreviation": abb}), 7200
+    )
     if team:
         return {
             "message": f"Team {abb} successfully retrieved.",

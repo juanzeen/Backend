@@ -235,7 +235,7 @@ async def get_nba_player_season_by_year(
             "description": "Players from team XXX not found.",
         }
     },
-    dependencies=[rate_limit(40,60)]
+    dependencies=[rate_limit(40, 60)],
 )
 async def get_players_by_team(
     team_abb: Annotated[
@@ -279,23 +279,23 @@ async def get_players_by_team(
             "description": "Actual NBA player with id xx not found.",
         }
     },
-    dependencies=[rate_limit(20,60)]
+    dependencies=[rate_limit(20, 60)],
 )
 async def get_player_season_prediction(
     id: Annotated[
         int, Path(gt=10, lt=10000000, title="ID from the player who will be fetched")
     ],
     db: DbDependency,
-    redis: RedisDependency
+    redis: RedisDependency,
 ) -> ResponseDict[SeasonPrediction] | ErrorResponseDict:
     np = db["players"]
     cache_key = f"players:{id}:predictions:season"
     season_prediction = await get_cached(redis=redis, cache_key=cache_key)
     if season_prediction:
         return {
-                    "message": "Player season prediction successfully calculated.",
-                    "data": season_prediction,
-                }
+            "message": "Player season prediction successfully calculated.",
+            "data": season_prediction,
+        }
     player = await np.find_one({"_id": id})
     if player:
         prediction_data = {"player_id": player.get("_id"), "age": player.get("age")}
@@ -313,7 +313,7 @@ async def get_player_season_prediction(
                 "age_adjustment_pct": f"{age_factor * 100}%",
             },
         }
-        await set_cache(redis, cache_key,data,86400)
+        await set_cache(redis, cache_key, data, 86400)
         return {
             "message": "Player season prediction successfully calculated.",
             "data": data,
@@ -332,7 +332,7 @@ async def get_player_season_prediction(
             "description": "Actual NBA player with id xx not found.",
         }
     },
-    dependencies=[rate_limit(30,60)]
+    dependencies=[rate_limit(30, 60)],
 )
 async def get_player_matchup_prediction(
     id: Annotated[
@@ -350,12 +350,12 @@ async def get_player_matchup_prediction(
     np = db["players"]
     nt = db["teams"]
     cache_key = f"players:{id}:predictions:matchup:{opponent_team_id}:home:{str(is_home).lower()}"
-    cached_prediction = await get_cached(redis,cache_key)
+    cached_prediction = await get_cached(redis, cache_key)
     if cached_prediction:
-         return {
-                "data": cached_prediction,
-                "message": f"Player with id {id} matchup against team {opponent_team_id} succesfully retrieved",
-            }
+        return {
+            "data": cached_prediction,
+            "message": f"Player with id {id} matchup against team {opponent_team_id} succesfully retrieved",
+        }
     player = await np.find_one({"_id": id})
     team = await nt.find_one({"_id": opponent_team_id})
     if not player:
