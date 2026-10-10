@@ -1,5 +1,5 @@
 from httpx import ASGITransport, AsyncClient
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from ..main import app
 from ..dependencies import get_db
@@ -578,3 +578,207 @@ async def test_fail_get_players_by_team_abbreviation_too_long():
     app.dependency_overrides.clear()
     assert response.status_code == 422
     assert message == "String should have at most 3 characters"
+
+
+mock_opponent_team = {
+    "_id": 1610612737,
+    "name": "Atlanta Hawks",
+    "last_season": {
+        "metrics": {
+            "pace": 102.5,
+            "defensive_rating": 118.0,
+            "pts_allowed_per_game": 119.3,
+            "reb_allowed_per_game": 45.0,
+            "ast_allowed_per_game": 28.0,
+            "stl_allowed_per_game": 8.0,
+            "blk_allowed_per_game": 5.2,
+        }
+    },
+    "actual_season": {"rank": None, "metrics": {}},
+}
+
+
+@pytest.mark.anyio
+async def test_get_player_season_prediction():
+    mock_db = MagicMock()
+    mock_cursor = MagicMock()
+    mock_cursor.find_one = AsyncMock(return_value=mock_p1)
+    mock_db.__getitem__.return_value = mock_cursor
+    app.dependency_overrides[get_db] = lambda: mock_db
+
+    mock_proj = {"pts": 18.0, "ast": 4.0, "reb": 5.0, "stl": 1.0, "blk": 0.5}
+    with patch(
+        "app.routers.players.calculate_player_year_prediction",
+        new=AsyncMock(return_value=(mock_proj, 1.042)),
+    ):
+        async with AsyncClient(
+            transport=ASGITransport(app=app), base_url="http://test"
+        ) as ac:
+            response = await ac.get(f"/players/{mock_p1['_id']}/predictions/season")
+            data = response.json().get("data")
+            message = response.json().get("message", "")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert data["player_id"] == mock_p1["_id"]
+    assert data["projected_averages"] == mock_proj
+    assert "confidence_intervals" in data
+    assert message == "Player season prediction successfully calculated."
+
+
+@pytest.mark.anyio
+async def test_fail_get_player_season_prediction_not_found():
+    mock_db = MagicMock()
+    mock_cursor = MagicMock()
+    mock_cursor.find_one = AsyncMock(return_value=None)
+    mock_db.__getitem__.return_value = mock_cursor
+    app.dependency_overrides[get_db] = lambda: mock_db
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        response = await ac.get("/players/999999/predictions/season")
+        message = response.json().get("detail", {}).get("message", "")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 404
+    assert message == "Player with id 999999 not found."
+
+
+@pytest.mark.anyio
+async def test_fail_get_player_season_prediction_invalid_id():
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        response = await ac.get("/players/5/predictions/season")
+    assert response.status_code == 422
+
+
+@pytest.mark.anyio
+async def test_get_player_matchup_prediction_home():
+    mock_db = MagicMock()
+
+    def get_collection(name):
+        mock_col = MagicMock()
+        if name == "players":
+            mock_col.find_one = AsyncMock(return_value=mock_p1)
+        elif name == "teams":
+            mock_col.find_one = AsyncMock(return_value=mock_opponent_team)
+        return mock_col
+
+    mock_db.__getitem__.side_effect = get_collection
+    app.dependency_overrides[get_db] = lambda: mock_db
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        response = await ac.get(
+            f"/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=true"
+        )
+        data = response.json().get("data")
+        message = response.json().get("message", "")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert data["player_id"] == mock_p1["_id"]
+    assert data["opponent_id"] == 1610612737
+    assert data["factors"]["is_home"] is True
+    assert "projected_averages" in data
+    assert "confidence_intervals" in data
+    assert "succesfully retrieved" in message
+
+
+@pytest.mark.anyio
+async def test_get_player_matchup_prediction_away():
+    mock_db = MagicMock()
+
+    def get_collection(name):
+        mock_col = MagicMock()
+        if name == "players":
+            mock_col.find_one = AsyncMock(return_value=mock_p1)
+        elif name == "teams":
+            mock_col.find_one = AsyncMock(return_value=mock_opponent_team)
+        return mock_col
+
+    mock_db.__getitem__.side_effect = get_collection
+    app.dependency_overrides[get_db] = lambda: mock_db
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        response = await ac.get(
+            f"/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=false"
+        )
+        data = response.json().get("data")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert data["factors"]["is_home"] is False
+
+
+@pytest.mark.anyio
+async def test_fail_get_player_matchup_prediction_player_not_found():
+    mock_db = MagicMock()
+
+    def get_collection(name):
+        mock_col = MagicMock()
+        if name == "players":
+            mock_col.find_one = AsyncMock(return_value=None)
+        elif name == "teams":
+            mock_col.find_one = AsyncMock(return_value=mock_opponent_team)
+        return mock_col
+
+    mock_db.__getitem__.side_effect = get_collection
+    app.dependency_overrides[get_db] = lambda: mock_db
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        response = await ac.get("/players/999999/predictions/matchup/1610612737")
+        message = response.json().get("detail", {}).get("message", "")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 404
+    assert message == "Player with id 999999 not found."
+
+
+@pytest.mark.anyio
+async def test_fail_get_player_matchup_prediction_team_not_found():
+    mock_db = MagicMock()
+
+    def get_collection(name):
+        mock_col = MagicMock()
+        if name == "players":
+            mock_col.find_one = AsyncMock(return_value=mock_p1)
+        elif name == "teams":
+            mock_col.find_one = AsyncMock(return_value=None)
+        return mock_col
+
+    mock_db.__getitem__.side_effect = get_collection
+    app.dependency_overrides[get_db] = lambda: mock_db
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        response = await ac.get(
+            f"/players/{mock_p1['_id']}/predictions/matchup/1610612737"
+        )
+        message = response.json().get("detail", {}).get("message", "")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 404
+    assert "not found" in message
+
+
+@pytest.mark.anyio
+async def test_fail_get_player_matchup_prediction_invalid_ids():
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        # Invalid player id (<= 10)
+        res1 = await ac.get("/players/5/predictions/matchup/1610612737")
+        assert res1.status_code == 422
+
+        # Invalid opponent team id (<= 999999999)
+        res2 = await ac.get(f"/players/{mock_p1['_id']}/predictions/matchup/100")
+        assert res2.status_code == 422

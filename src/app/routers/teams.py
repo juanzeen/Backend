@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Path, HTTPException, Query
 from typing import Annotated
-from ..dependencies import DbDependency
+from ..dependencies import DbDependency, RedisDependency
 
-# from ..utils.cache import get_cached_or_db
+from ..utils.cache import get_cached_or_db
+from ..utils.rate_limiter import rate_limit
 from ..schemas.teams import Team
 from ..schemas.base import (
     ResponseDict,
@@ -62,6 +63,7 @@ async def get_teams(
             "description": "Team with ID xxxx not found.",
         }
     },
+    dependencies=[rate_limit(60, 60)],
 )
 async def get_team_by_id(
     id: Annotated[
@@ -72,9 +74,11 @@ async def get_team_by_id(
         ),
     ],
     db: DbDependency,
+    redis: RedisDependency,
 ) -> ResponseDict[Team] | ErrorResponseDict:
     tc = db["teams"]
-    team = await tc.find_one({"_id": id})
+    cache_key = f"teams:id:{id}"
+    team = await get_cached_or_db(redis, cache_key, tc.find_one({"_id": id}), 7200)
     if team:
         return {
             "message": f"Team with id {id} successfully retrieved.",
@@ -85,7 +89,16 @@ async def get_team_by_id(
     )
 
 
-@router.get("/search/{abb}/")
+@router.get(
+    "/search/{abb}/",
+    responses={
+        404: {
+            "model": ErrorResponseDict,
+            "description": "Team with abbreviation XXX not found.",
+        }
+    },
+    dependencies=[rate_limit(60, 60)],
+)
 async def get_team_by_abbreviation(
     abb: Annotated[
         str,
@@ -96,9 +109,13 @@ async def get_team_by_abbreviation(
         ),
     ],
     db: DbDependency,
+    redis: RedisDependency,
 ) -> ResponseDict[Team] | ErrorResponseDict:
     tc = db["teams"]
-    team = await tc.find_one({"abbreviation": abb})
+    cache_key = f"teams:abb:{abb.upper()}"
+    team = await get_cached_or_db(
+        redis, cache_key, tc.find_one({"abbreviation": abb}), 7200
+    )
     if team:
         return {
             "message": f"Team {abb} successfully retrieved.",

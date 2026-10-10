@@ -150,12 +150,12 @@ def normalize_season_item(season_item: dict) -> dict:
 
 def populate_historical_players():
     """Populate base historical player profiles from CSV into MongoDB."""
-    file_path = "nba_legends.csv"
+    file_path = "nba_legends_2.csv"
 
     if not os.path.exists(file_path):
         print("CSV file not found!")
         return
-    collection = get_db_collection("historical_players")
+    collection = get_db_collection("historical_players_v2")
 
     df_legends = pd.read_csv(file_path)
     print(
@@ -212,6 +212,7 @@ def populate_historical_players():
                     "mvps": clean_int(row.get("MVPs")),
                     "finals_mvps": clean_int(row.get("Finals MVPs")),
                     "all_stars": clean_int(row.get("All-Star Appearances")),
+                    "championships": clean_int(row.get("Championships")),
                 },
             }
 
@@ -233,12 +234,12 @@ def populate_historical_players():
 
 def populate_historical_players_seasons():
     """Fetch season-by-season stats from NBA API for each legend and save formatted seasons."""
-    file_path = "nba_legends.csv"
+    file_path = "nba_legends_2.csv"
 
     if not os.path.exists(file_path):
         print("CSV file not found!")
         return
-    collection = get_db_collection("historical_players")
+    collection = get_db_collection("historical_players_v2")
 
     df_legends = pd.read_csv(file_path)
     players = df_legends["Player ID"].dropna().unique().tolist()
@@ -312,7 +313,7 @@ def populate_historical_players_seasons():
 
 def fix_seasons_structure():
     """Correct and clean the seasons array across all historical player records in MongoDB."""
-    collection = get_db_collection("historical_players")
+    collection = get_db_collection("historical_players_v2")
     print("Starting correction and cleanup of 'seasons' array...")
 
     players = collection.find({})
@@ -674,7 +675,8 @@ def populate_players_age():
 
 def populate_teams():
     col = get_db_collection("teams")
-    with open("normalized_teams_data.json", "r") as f:
+    col.delete_many({})
+    with open("full_data_teams_v2.json", "r") as f:
         teams = json.load(f)
         col.insert_many(teams)
         f.close()
@@ -686,4 +688,4 @@ def populate_teams():
 # populate_nba_players()
 # populate_player_seasons()
 # populate_players_age()
-populate_teams()
+# populate_teams()
