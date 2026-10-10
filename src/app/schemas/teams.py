@@ -46,7 +46,6 @@ class SeasonStats(TypedDict):
     metrics: Metrics
 
 
-# Type aliases for alternative naming conventions
 TeamRecord = Record
 TeamPowerRanking = PowerRanking
 TeamMetrics = Metrics
@@ -54,8 +53,6 @@ TeamSeason = SeasonStats
 
 
 class Team(BaseModel):
-    model_config = ConfigDict(populate_by_name=True)
-
     id: PyObjectId = Field(default=None, alias="_id")
     abbreviation: str
     name: str

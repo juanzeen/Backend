@@ -18,3 +18,15 @@ async def get_cached_or_db(
         return None
     await redis.set(cache_key, json.dumps(db_data), ex=expire_seconds)
     return db_data
+
+async def get_cached(redis: aioredis.Redis, cache_key: str) -> Optional[Any]:
+    cached_data = await redis.get(cache_key)
+    if cached_data:
+        return json.loads(cached_data)
+    return None
+
+async def set_cache(redis: aioredis.Redis, cache_key: str, data: Any, expire_seconds: int) -> bool:
+    if data:
+        succes_set = await redis.set(cache_key, json.dumps(data), ex=expire_seconds)
+        return succes_set
+    return False

@@ -675,6 +675,7 @@ def populate_players_age():
 
 def populate_teams():
     col = get_db_collection("teams")
+    col.delete_many({})
     with open("full_data_teams_v2.json", "r") as f:
         teams = json.load(f)
         col.insert_many(teams)
@@ -682,8 +683,8 @@ def populate_teams():
 
 
 # populate_historical_records()
-#populate_historical_players()
-#populate_historical_players_seasons()
+# populate_historical_players()
+# populate_historical_players_seasons()
 # populate_nba_players()
 # populate_player_seasons()
 # populate_players_age()
