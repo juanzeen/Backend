@@ -688,4 +688,4 @@ def populate_teams():
 # populate_nba_players()
 # populate_player_seasons()
 # populate_players_age()
-# populate_teams()
+populate_teams()
