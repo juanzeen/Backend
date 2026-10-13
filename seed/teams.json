@@ -1,0 +1,2402 @@
+[
+  {
+    "_id": 1610612737,
+    "abbreviation": "ATL",
+    "name": "Atlanta Hawks",
+    "city": "Atlanta",
+    "conference": "East",
+    "division": "Southeast",
+    "founded_in": 1949,
+    "championships": 1,
+    "last_season": {
+      "rank": 11,
+      "record": {
+        "wins": 46,
+        "losses": 36,
+        "win_pct": 0.561,
+        "home": "24-17",
+        "road": "22-19"
+      },
+      "power_ranking": {
+        "rank": 13,
+        "tier": "Play-in Contender",
+        "power_score": 59.1,
+        "trend": "-2"
+      },
+      "metrics": {
+        "pace": 102.5,
+        "offensive_rating": 115.0,
+        "defensive_rating": 112.9,
+        "net_rating": 2.2,
+        "pts_per_game": 118.5,
+        "pts_allowed_per_game": 116.0,
+        "ast_per_game": 30.1,
+        "ast_allowed_per_game": 26.6,
+        "reb_per_game": 43.5,
+        "reb_allowed_per_game": 45.2,
+        "dreb_per_game": 32.6,
+        "dreb_allowed_per_game": 34.1,
+        "oreb_per_game": 11.0,
+        "oreb_allowed_per_game": 11.1,
+        "stl_per_game": 9.4,
+        "stl_allowed_per_game": 8.5,
+        "blk_per_game": 4.7,
+        "blk_allowed_per_game": 4.9
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612738,
+    "abbreviation": "BOS",
+    "name": "Boston Celtics",
+    "city": "Boston",
+    "conference": "East",
+    "division": "Atlantic",
+    "founded_in": 1946,
+    "championships": 18,
+    "last_season": {
+      "rank": 4,
+      "record": {
+        "wins": 56,
+        "losses": 26,
+        "win_pct": 0.683,
+        "home": "30-11",
+        "road": "26-15"
+      },
+      "power_ranking": {
+        "rank": 4,
+        "tier": "Championship Contender",
+        "power_score": 80.0,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 95.58,
+        "offensive_rating": 120.0,
+        "defensive_rating": 111.7,
+        "net_rating": 8.3,
+        "pts_per_game": 114.9,
+        "pts_allowed_per_game": 107.2,
+        "ast_per_game": 24.6,
+        "ast_allowed_per_game": 24.7,
+        "reb_per_game": 46.4,
+        "reb_allowed_per_game": 41.2,
+        "dreb_per_game": 33.9,
+        "dreb_allowed_per_game": 30.4,
+        "oreb_per_game": 12.5,
+        "oreb_allowed_per_game": 10.9,
+        "stl_per_game": 7.1,
+        "stl_allowed_per_game": 6.2,
+        "blk_per_game": 5.0,
+        "blk_allowed_per_game": 4.1
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612739,
+    "abbreviation": "CLE",
+    "name": "Cleveland Cavaliers",
+    "city": "Cleveland",
+    "conference": "East",
+    "division": "Central",
+    "founded_in": 1970,
+    "championships": 1,
+    "last_season": {
+      "rank": 8,
+      "record": {
+        "wins": 52,
+        "losses": 30,
+        "win_pct": 0.634,
+        "home": "27-14",
+        "road": "25-16"
+      },
+      "power_ranking": {
+        "rank": 8,
+        "tier": "Playoff Contender",
+        "power_score": 67.0,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 100.7,
+        "offensive_rating": 118.3,
+        "defensive_rating": 114.1,
+        "net_rating": 4.1,
+        "pts_per_game": 119.5,
+        "pts_allowed_per_game": 115.4,
+        "ast_per_game": 28.3,
+        "ast_allowed_per_game": 26.9,
+        "reb_per_game": 44.4,
+        "reb_allowed_per_game": 43.2,
+        "dreb_per_game": 32.7,
+        "dreb_allowed_per_game": 31.9,
+        "oreb_per_game": 11.7,
+        "oreb_allowed_per_game": 11.3,
+        "stl_per_game": 8.5,
+        "stl_allowed_per_game": 8.6,
+        "blk_per_game": 5.0,
+        "blk_allowed_per_game": 4.3
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612740,
+    "abbreviation": "NOP",
+    "name": "New Orleans Pelicans",
+    "city": "New Orleans",
+    "conference": "West",
+    "division": "Southwest",
+    "founded_in": 2002,
+    "championships": 0,
+    "last_season": {
+      "rank": 23,
+      "record": {
+        "wins": 26,
+        "losses": 56,
+        "win_pct": 0.317,
+        "home": "17-24",
+        "road": "9-32"
+      },
+      "power_ranking": {
+        "rank": 22,
+        "tier": "Lottery",
+        "power_score": 32.1,
+        "trend": "+1"
+      },
+      "metrics": {
+        "pace": 101.37,
+        "offensive_rating": 113.3,
+        "defensive_rating": 117.6,
+        "net_rating": -4.4,
+        "pts_per_game": 115.5,
+        "pts_allowed_per_game": 120.0,
+        "ast_per_game": 25.1,
+        "ast_allowed_per_game": 28.1,
+        "reb_per_game": 43.9,
+        "reb_allowed_per_game": 45.8,
+        "dreb_per_game": 31.7,
+        "dreb_allowed_per_game": 33.1,
+        "oreb_per_game": 12.2,
+        "oreb_allowed_per_game": 12.7,
+        "stl_per_game": 8.9,
+        "stl_allowed_per_game": 8.0,
+        "blk_per_game": 5.2,
+        "blk_allowed_per_game": 5.8
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612741,
+    "abbreviation": "CHI",
+    "name": "Chicago Bulls",
+    "city": "Chicago",
+    "conference": "East",
+    "division": "Central",
+    "founded_in": 1966,
+    "championships": 6,
+    "last_season": {
+      "rank": 22,
+      "record": {
+        "wins": 31,
+        "losses": 51,
+        "win_pct": 0.378,
+        "home": "18-23",
+        "road": "13-28"
+      },
+      "power_ranking": {
+        "rank": 21,
+        "tier": "Lottery",
+        "power_score": 32.2,
+        "trend": "+1"
+      },
+      "metrics": {
+        "pace": 103.22,
+        "offensive_rating": 112.1,
+        "defensive_rating": 117.4,
+        "net_rating": -5.3,
+        "pts_per_game": 116.3,
+        "pts_allowed_per_game": 121.5,
+        "ast_per_game": 28.5,
+        "ast_allowed_per_game": 28.8,
+        "reb_per_game": 45.0,
+        "reb_allowed_per_game": 45.7,
+        "dreb_per_game": 34.7,
+        "dreb_allowed_per_game": 34.4,
+        "oreb_per_game": 10.4,
+        "oreb_allowed_per_game": 11.3,
+        "stl_per_game": 7.6,
+        "stl_allowed_per_game": 9.1,
+        "blk_per_game": 5.0,
+        "blk_allowed_per_game": 5.6
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612742,
+    "abbreviation": "DAL",
+    "name": "Dallas Mavericks",
+    "city": "Dallas",
+    "conference": "West",
+    "division": "Southwest",
+    "founded_in": 1980,
+    "championships": 1,
+    "last_season": {
+      "rank": 23,
+      "record": {
+        "wins": 26,
+        "losses": 56,
+        "win_pct": 0.317,
+        "home": "16-25",
+        "road": "10-30"
+      },
+      "power_ranking": {
+        "rank": 24,
+        "tier": "Lottery",
+        "power_score": 30.0,
+        "trend": "-1"
+      },
+      "metrics": {
+        "pace": 102.62,
+        "offensive_rating": 110.3,
+        "defensive_rating": 115.5,
+        "net_rating": -5.2,
+        "pts_per_game": 114.1,
+        "pts_allowed_per_game": 119.6,
+        "ast_per_game": 25.3,
+        "ast_allowed_per_game": 28.4,
+        "reb_per_game": 44.7,
+        "reb_allowed_per_game": 46.8,
+        "dreb_per_game": 34.2,
+        "dreb_allowed_per_game": 34.8,
+        "oreb_per_game": 10.5,
+        "oreb_allowed_per_game": 12.0,
+        "stl_per_game": 7.5,
+        "stl_allowed_per_game": 8.8,
+        "blk_per_game": 5.2,
+        "blk_allowed_per_game": 5.3
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612743,
+    "abbreviation": "DEN",
+    "name": "Denver Nuggets",
+    "city": "Denver",
+    "conference": "West",
+    "division": "Northwest",
+    "founded_in": 1976,
+    "championships": 1,
+    "last_season": {
+      "rank": 5,
+      "record": {
+        "wins": 54,
+        "losses": 28,
+        "win_pct": 0.659,
+        "home": "28-13",
+        "road": "26-15"
+      },
+      "power_ranking": {
+        "rank": 6,
+        "tier": "Playoff Contender",
+        "power_score": 70.9,
+        "trend": "-1"
+      },
+      "metrics": {
+        "pace": 99.49,
+        "offensive_rating": 121.2,
+        "defensive_rating": 116.0,
+        "net_rating": 5.2,
+        "pts_per_game": 122.1,
+        "pts_allowed_per_game": 116.9,
+        "ast_per_game": 29.0,
+        "ast_allowed_per_game": 27.5,
+        "reb_per_game": 44.0,
+        "reb_allowed_per_game": 42.8,
+        "dreb_per_game": 34.2,
+        "dreb_allowed_per_game": 31.6,
+        "oreb_per_game": 9.8,
+        "oreb_allowed_per_game": 11.2,
+        "stl_per_game": 6.8,
+        "stl_allowed_per_game": 7.8,
+        "blk_per_game": 4.0,
+        "blk_allowed_per_game": 4.6
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612744,
+    "abbreviation": "GSW",
+    "name": "Golden State Warriors",
+    "city": "Golden State",
+    "conference": "West",
+    "division": "Pacific",
+    "founded_in": 1946,
+    "championships": 7,
+    "last_season": {
+      "rank": 20,
+      "record": {
+        "wins": 37,
+        "losses": 45,
+        "win_pct": 0.451,
+        "home": "22-19",
+        "road": "15-26"
+      },
+      "power_ranking": {
+        "rank": 20,
+        "tier": "Lottery",
+        "power_score": 47.6,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 100.05,
+        "offensive_rating": 113.8,
+        "defensive_rating": 114.4,
+        "net_rating": -0.5,
+        "pts_per_game": 114.6,
+        "pts_allowed_per_game": 115.2,
+        "ast_per_game": 28.9,
+        "ast_allowed_per_game": 27.1,
+        "reb_per_game": 42.3,
+        "reb_allowed_per_game": 44.2,
+        "dreb_per_game": 31.0,
+        "dreb_allowed_per_game": 32.7,
+        "oreb_per_game": 11.4,
+        "oreb_allowed_per_game": 11.5,
+        "stl_per_game": 9.7,
+        "stl_allowed_per_game": 8.8,
+        "blk_per_game": 4.2,
+        "blk_allowed_per_game": 4.2
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612745,
+    "abbreviation": "HOU",
+    "name": "Houston Rockets",
+    "city": "Houston",
+    "conference": "West",
+    "division": "Southwest",
+    "founded_in": 1967,
+    "championships": 2,
+    "last_season": {
+      "rank": 8,
+      "record": {
+        "wins": 52,
+        "losses": 30,
+        "win_pct": 0.634,
+        "home": "30-11",
+        "road": "22-19"
+      },
+      "power_ranking": {
+        "rank": 7,
+        "tier": "Playoff Contender",
+        "power_score": 70.4,
+        "trend": "+1"
+      },
+      "metrics": {
+        "pace": 96.98,
+        "offensive_rating": 117.5,
+        "defensive_rating": 112.1,
+        "net_rating": 5.4,
+        "pts_per_game": 115.2,
+        "pts_allowed_per_game": 110.0,
+        "ast_per_game": 25.4,
+        "ast_allowed_per_game": 24.5,
+        "reb_per_game": 48.1,
+        "reb_allowed_per_game": 39.5,
+        "dreb_per_game": 33.1,
+        "dreb_allowed_per_game": 28.2,
+        "oreb_per_game": 15.0,
+        "oreb_allowed_per_game": 11.3,
+        "stl_per_game": 8.5,
+        "stl_allowed_per_game": 9.0,
+        "blk_per_game": 5.8,
+        "blk_allowed_per_game": 4.7
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612746,
+    "abbreviation": "LAC",
+    "name": "Los Angeles Clippers",
+    "city": "LA",
+    "conference": "West",
+    "division": "Pacific",
+    "founded_in": 1970,
+    "championships": 0,
+    "last_season": {
+      "rank": 18,
+      "record": {
+        "wins": 42,
+        "losses": 40,
+        "win_pct": 0.512,
+        "home": "23-18",
+        "road": "19-22"
+      },
+      "power_ranking": {
+        "rank": 17,
+        "tier": "Play-in Contender",
+        "power_score": 54.3,
+        "trend": "+1"
+      },
+      "metrics": {
+        "pace": 97.29,
+        "offensive_rating": 116.3,
+        "defensive_rating": 115.2,
+        "net_rating": 1.1,
+        "pts_per_game": 113.8,
+        "pts_allowed_per_game": 112.6,
+        "ast_per_game": 23.7,
+        "ast_allowed_per_game": 26.1,
+        "reb_per_game": 40.6,
+        "reb_allowed_per_game": 42.4,
+        "dreb_per_game": 31.0,
+        "dreb_allowed_per_game": 30.8,
+        "oreb_per_game": 9.6,
+        "oreb_allowed_per_game": 11.5,
+        "stl_per_game": 9.0,
+        "stl_allowed_per_game": 8.5,
+        "blk_per_game": 4.9,
+        "blk_allowed_per_game": 4.6
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612747,
+    "abbreviation": "LAL",
+    "name": "Los Angeles Lakers",
+    "city": "Los Angeles",
+    "conference": "West",
+    "division": "Pacific",
+    "founded_in": 1948,
+    "championships": 17,
+    "last_season": {
+      "rank": 6,
+      "record": {
+        "wins": 53,
+        "losses": 29,
+        "win_pct": 0.646,
+        "home": "28-13",
+        "road": "25-16"
+      },
+      "power_ranking": {
+        "rank": 12,
+        "tier": "Play-in Contender",
+        "power_score": 60.7,
+        "trend": "-6"
+      },
+      "metrics": {
+        "pace": 99.22,
+        "offensive_rating": 117.0,
+        "defensive_rating": 115.5,
+        "net_rating": 1.5,
+        "pts_per_game": 116.3,
+        "pts_allowed_per_game": 114.6,
+        "ast_per_game": 25.9,
+        "ast_allowed_per_game": 27.4,
+        "reb_per_game": 41.0,
+        "reb_allowed_per_game": 41.0,
+        "dreb_per_game": 31.5,
+        "dreb_allowed_per_game": 30.1,
+        "oreb_per_game": 9.4,
+        "oreb_allowed_per_game": 10.9,
+        "stl_per_game": 8.5,
+        "stl_allowed_per_game": 8.9,
+        "blk_per_game": 4.3,
+        "blk_allowed_per_game": 3.5
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612748,
+    "abbreviation": "MIA",
+    "name": "Miami Heat",
+    "city": "Miami",
+    "conference": "East",
+    "division": "Southeast",
+    "founded_in": 1988,
+    "championships": 3,
+    "last_season": {
+      "rank": 17,
+      "record": {
+        "wins": 43,
+        "losses": 39,
+        "win_pct": 0.524,
+        "home": "26-15",
+        "road": "17-24"
+      },
+      "power_ranking": {
+        "rank": 14,
+        "tier": "Play-in Contender",
+        "power_score": 57.4,
+        "trend": "+3"
+      },
+      "metrics": {
+        "pace": 104.22,
+        "offensive_rating": 115.8,
+        "defensive_rating": 113.6,
+        "net_rating": 2.1,
+        "pts_per_game": 120.9,
+        "pts_allowed_per_game": 118.5,
+        "ast_per_game": 29.0,
+        "ast_allowed_per_game": 27.5,
+        "reb_per_game": 46.3,
+        "reb_allowed_per_game": 46.4,
+        "dreb_per_game": 34.5,
+        "dreb_allowed_per_game": 34.8,
+        "oreb_per_game": 11.8,
+        "oreb_allowed_per_game": 11.6,
+        "stl_per_game": 8.6,
+        "stl_allowed_per_game": 7.9,
+        "blk_per_game": 4.3,
+        "blk_allowed_per_game": 4.9
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612749,
+    "abbreviation": "MIL",
+    "name": "Milwaukee Bucks",
+    "city": "Milwaukee",
+    "conference": "East",
+    "division": "Central",
+    "founded_in": 1968,
+    "championships": 2,
+    "last_season": {
+      "rank": 21,
+      "record": {
+        "wins": 32,
+        "losses": 50,
+        "win_pct": 0.39,
+        "home": "19-22",
+        "road": "13-28"
+      },
+      "power_ranking": {
+        "rank": 23,
+        "tier": "Lottery",
+        "power_score": 30.5,
+        "trend": "-2"
+      },
+      "metrics": {
+        "pace": 98.33,
+        "offensive_rating": 112.2,
+        "defensive_rating": 118.3,
+        "net_rating": -6.1,
+        "pts_per_game": 110.6,
+        "pts_allowed_per_game": 116.8,
+        "ast_per_game": 25.8,
+        "ast_allowed_per_game": 27.9,
+        "reb_per_game": 40.7,
+        "reb_allowed_per_game": 44.5,
+        "dreb_per_game": 31.8,
+        "dreb_allowed_per_game": 33.4,
+        "oreb_per_game": 8.9,
+        "oreb_allowed_per_game": 11.1,
+        "stl_per_game": 7.4,
+        "stl_allowed_per_game": 8.7,
+        "blk_per_game": 4.0,
+        "blk_allowed_per_game": 4.1
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612750,
+    "abbreviation": "MIN",
+    "name": "Minnesota Timberwolves",
+    "city": "Minnesota",
+    "conference": "West",
+    "division": "Northwest",
+    "founded_in": 1989,
+    "championships": 0,
+    "last_season": {
+      "rank": 10,
+      "record": {
+        "wins": 49,
+        "losses": 33,
+        "win_pct": 0.598,
+        "home": "26-15",
+        "road": "23-18"
+      },
+      "power_ranking": {
+        "rank": 10,
+        "tier": "Playoff Contender",
+        "power_score": 63.0,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 101.5,
+        "offensive_rating": 115.6,
+        "defensive_rating": 112.5,
+        "net_rating": 3.1,
+        "pts_per_game": 118.0,
+        "pts_allowed_per_game": 114.6,
+        "ast_per_game": 26.1,
+        "ast_allowed_per_game": 26.0,
+        "reb_per_game": 44.1,
+        "reb_allowed_per_game": 43.7,
+        "dreb_per_game": 33.0,
+        "dreb_allowed_per_game": 32.0,
+        "oreb_per_game": 11.1,
+        "oreb_allowed_per_game": 11.8,
+        "stl_per_game": 8.7,
+        "stl_allowed_per_game": 8.3,
+        "blk_per_game": 5.8,
+        "blk_allowed_per_game": 4.1
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612751,
+    "abbreviation": "BKN",
+    "name": "Brooklyn Nets",
+    "city": "Brooklyn",
+    "conference": "East",
+    "division": "Atlantic",
+    "founded_in": 1976,
+    "championships": 0,
+    "last_season": {
+      "rank": 28,
+      "record": {
+        "wins": 20,
+        "losses": 62,
+        "win_pct": 0.244,
+        "home": "12-29",
+        "road": "8-33"
+      },
+      "power_ranking": {
+        "rank": 29,
+        "tier": "Rebuilding",
+        "power_score": 14.5,
+        "trend": "-1"
+      },
+      "metrics": {
+        "pace": 97.6,
+        "offensive_rating": 108.2,
+        "defensive_rating": 118.2,
+        "net_rating": -10.0,
+        "pts_per_game": 105.9,
+        "pts_allowed_per_game": 115.9,
+        "ast_per_game": 25.0,
+        "ast_allowed_per_game": 27.5,
+        "reb_per_game": 39.3,
+        "reb_allowed_per_game": 43.6,
+        "dreb_per_game": 29.0,
+        "dreb_allowed_per_game": 33.4,
+        "oreb_per_game": 10.3,
+        "oreb_allowed_per_game": 10.2,
+        "stl_per_game": 8.0,
+        "stl_allowed_per_game": 9.1,
+        "blk_per_game": 4.3,
+        "blk_allowed_per_game": 5.3
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612752,
+    "abbreviation": "NYK",
+    "name": "New York Knicks",
+    "city": "New York",
+    "conference": "East",
+    "division": "Atlantic",
+    "founded_in": 1946,
+    "championships": 2,
+    "last_season": {
+      "rank": 6,
+      "record": {
+        "wins": 53,
+        "losses": 29,
+        "win_pct": 0.646,
+        "home": "30-10",
+        "road": "22-19"
+      },
+      "power_ranking": {
+        "rank": 5,
+        "tier": "Championship Contender",
+        "power_score": 73.5,
+        "trend": "+1"
+      },
+      "metrics": {
+        "pace": 97.71,
+        "offensive_rating": 118.7,
+        "defensive_rating": 112.3,
+        "net_rating": 6.4,
+        "pts_per_game": 116.5,
+        "pts_allowed_per_game": 110.1,
+        "ast_per_game": 27.4,
+        "ast_allowed_per_game": 25.0,
+        "reb_per_game": 45.6,
+        "reb_allowed_per_game": 40.5,
+        "dreb_per_game": 32.9,
+        "dreb_allowed_per_game": 30.5,
+        "oreb_per_game": 12.7,
+        "oreb_allowed_per_game": 10.0,
+        "stl_per_game": 8.1,
+        "stl_allowed_per_game": 7.3,
+        "blk_per_game": 3.9,
+        "blk_allowed_per_game": 4.3
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612753,
+    "abbreviation": "ORL",
+    "name": "Orlando Magic",
+    "city": "Orlando",
+    "conference": "East",
+    "division": "Southeast",
+    "founded_in": 1989,
+    "championships": 0,
+    "last_season": {
+      "rank": 13,
+      "record": {
+        "wins": 45,
+        "losses": 37,
+        "win_pct": 0.549,
+        "home": "25-15",
+        "road": "19-20"
+      },
+      "power_ranking": {
+        "rank": 16,
+        "tier": "Play-in Contender",
+        "power_score": 54.4,
+        "trend": "-3"
+      },
+      "metrics": {
+        "pace": 100.56,
+        "offensive_rating": 114.2,
+        "defensive_rating": 113.6,
+        "net_rating": 0.6,
+        "pts_per_game": 115.7,
+        "pts_allowed_per_game": 115.1,
+        "ast_per_game": 26.5,
+        "ast_allowed_per_game": 25.3,
+        "reb_per_game": 43.4,
+        "reb_allowed_per_game": 43.3,
+        "dreb_per_game": 32.4,
+        "dreb_allowed_per_game": 32.9,
+        "oreb_per_game": 11.0,
+        "oreb_allowed_per_game": 10.5,
+        "stl_per_game": 8.5,
+        "stl_allowed_per_game": 8.2,
+        "blk_per_game": 4.7,
+        "blk_allowed_per_game": 5.4
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612754,
+    "abbreviation": "IND",
+    "name": "Indiana Pacers",
+    "city": "Indiana",
+    "conference": "East",
+    "division": "Central",
+    "founded_in": 1976,
+    "championships": 0,
+    "last_season": {
+      "rank": 29,
+      "record": {
+        "wins": 19,
+        "losses": 63,
+        "win_pct": 0.232,
+        "home": "11-30",
+        "road": "8-33"
+      },
+      "power_ranking": {
+        "rank": 27,
+        "tier": "Rebuilding",
+        "power_score": 19.8,
+        "trend": "+2"
+      },
+      "metrics": {
+        "pace": 101.78,
+        "offensive_rating": 110.1,
+        "defensive_rating": 117.9,
+        "net_rating": -7.8,
+        "pts_per_game": 112.4,
+        "pts_allowed_per_game": 120.4,
+        "ast_per_game": 27.7,
+        "ast_allowed_per_game": 26.4,
+        "reb_per_game": 41.9,
+        "reb_allowed_per_game": 46.7,
+        "dreb_per_game": 32.1,
+        "dreb_allowed_per_game": 35.4,
+        "oreb_per_game": 9.8,
+        "oreb_allowed_per_game": 11.2,
+        "stl_per_game": 7.4,
+        "stl_allowed_per_game": 8.1,
+        "blk_per_game": 4.6,
+        "blk_allowed_per_game": 4.8
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612755,
+    "abbreviation": "PHI",
+    "name": "Philadelphia 76ers",
+    "city": "Philadelphia",
+    "conference": "East",
+    "division": "Atlantic",
+    "founded_in": 1949,
+    "championships": 3,
+    "last_season": {
+      "rank": 13,
+      "record": {
+        "wins": 45,
+        "losses": 37,
+        "win_pct": 0.549,
+        "home": "23-18",
+        "road": "22-19"
+      },
+      "power_ranking": {
+        "rank": 18,
+        "tier": "Play-in Contender",
+        "power_score": 52.6,
+        "trend": "-5"
+      },
+      "metrics": {
+        "pace": 100.39,
+        "offensive_rating": 114.3,
+        "defensive_rating": 114.4,
+        "net_rating": -0.1,
+        "pts_per_game": 115.9,
+        "pts_allowed_per_game": 116.1,
+        "ast_per_game": 24.6,
+        "ast_allowed_per_game": 27.6,
+        "reb_per_game": 43.6,
+        "reb_allowed_per_game": 45.3,
+        "dreb_per_game": 31.8,
+        "dreb_allowed_per_game": 33.2,
+        "oreb_per_game": 11.8,
+        "oreb_allowed_per_game": 12.1,
+        "stl_per_game": 9.1,
+        "stl_allowed_per_game": 7.3,
+        "blk_per_game": 5.7,
+        "blk_allowed_per_game": 5.1
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612756,
+    "abbreviation": "PHX",
+    "name": "Phoenix Suns",
+    "city": "Phoenix",
+    "conference": "West",
+    "division": "Pacific",
+    "founded_in": 1968,
+    "championships": 0,
+    "last_season": {
+      "rank": 13,
+      "record": {
+        "wins": 45,
+        "losses": 37,
+        "win_pct": 0.549,
+        "home": "25-16",
+        "road": "20-21"
+      },
+      "power_ranking": {
+        "rank": 15,
+        "tier": "Play-in Contender",
+        "power_score": 56.5,
+        "trend": "-2"
+      },
+      "metrics": {
+        "pace": 98.14,
+        "offensive_rating": 114.2,
+        "defensive_rating": 112.9,
+        "net_rating": 1.4,
+        "pts_per_game": 112.6,
+        "pts_allowed_per_game": 111.1,
+        "ast_per_game": 24.6,
+        "ast_allowed_per_game": 25.1,
+        "reb_per_game": 43.1,
+        "reb_allowed_per_game": 43.7,
+        "dreb_per_game": 30.1,
+        "dreb_allowed_per_game": 31.9,
+        "oreb_per_game": 13.0,
+        "oreb_allowed_per_game": 11.8,
+        "stl_per_game": 9.5,
+        "stl_allowed_per_game": 7.9,
+        "blk_per_game": 4.2,
+        "blk_allowed_per_game": 4.5
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612757,
+    "abbreviation": "POR",
+    "name": "Portland Trail Blazers",
+    "city": "Portland",
+    "conference": "West",
+    "division": "Northwest",
+    "founded_in": 1970,
+    "championships": 1,
+    "last_season": {
+      "rank": 18,
+      "record": {
+        "wins": 42,
+        "losses": 40,
+        "win_pct": 0.512,
+        "home": "24-17",
+        "road": "18-23"
+      },
+      "power_ranking": {
+        "rank": 19,
+        "tier": "Lottery",
+        "power_score": 50.3,
+        "trend": "-1"
+      },
+      "metrics": {
+        "pace": 101.63,
+        "offensive_rating": 113.1,
+        "defensive_rating": 113.5,
+        "net_rating": -0.4,
+        "pts_per_game": 115.5,
+        "pts_allowed_per_game": 115.8,
+        "ast_per_game": 25.1,
+        "ast_allowed_per_game": 26.4,
+        "reb_per_game": 46.0,
+        "reb_allowed_per_game": 43.0,
+        "dreb_per_game": 31.9,
+        "dreb_allowed_per_game": 31.0,
+        "oreb_per_game": 14.1,
+        "oreb_allowed_per_game": 12.0,
+        "stl_per_game": 8.3,
+        "stl_allowed_per_game": 10.8,
+        "blk_per_game": 5.5,
+        "blk_allowed_per_game": 5.7
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612758,
+    "abbreviation": "SAC",
+    "name": "Sacramento Kings",
+    "city": "Sacramento",
+    "conference": "West",
+    "division": "Pacific",
+    "founded_in": 1948,
+    "championships": 1,
+    "last_season": {
+      "rank": 26,
+      "record": {
+        "wins": 22,
+        "losses": 60,
+        "win_pct": 0.268,
+        "home": "15-26",
+        "road": "7-34"
+      },
+      "power_ranking": {
+        "rank": 28,
+        "tier": "Rebuilding",
+        "power_score": 16.2,
+        "trend": "-2"
+      },
+      "metrics": {
+        "pace": 100.12,
+        "offensive_rating": 110.6,
+        "defensive_rating": 120.3,
+        "net_rating": -9.7,
+        "pts_per_game": 111.0,
+        "pts_allowed_per_game": 121.0,
+        "ast_per_game": 25.5,
+        "ast_allowed_per_game": 28.0,
+        "reb_per_game": 42.3,
+        "reb_allowed_per_game": 43.9,
+        "dreb_per_game": 30.8,
+        "dreb_allowed_per_game": 32.8,
+        "oreb_per_game": 11.5,
+        "oreb_allowed_per_game": 11.1,
+        "stl_per_game": 8.0,
+        "stl_allowed_per_game": 8.7,
+        "blk_per_game": 4.5,
+        "blk_allowed_per_game": 4.7
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612759,
+    "abbreviation": "SAS",
+    "name": "San Antonio Spurs",
+    "city": "San Antonio",
+    "conference": "West",
+    "division": "Southwest",
+    "founded_in": 1976,
+    "championships": 5,
+    "last_season": {
+      "rank": 2,
+      "record": {
+        "wins": 62,
+        "losses": 20,
+        "win_pct": 0.756,
+        "home": "32-8",
+        "road": "29-12"
+      },
+      "power_ranking": {
+        "rank": 2,
+        "tier": "Championship Contender",
+        "power_score": 83.2,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 100.72,
+        "offensive_rating": 118.7,
+        "defensive_rating": 110.4,
+        "net_rating": 8.4,
+        "pts_per_game": 119.8,
+        "pts_allowed_per_game": 111.5,
+        "ast_per_game": 28.1,
+        "ast_allowed_per_game": 26.2,
+        "reb_per_game": 47.0,
+        "reb_allowed_per_game": 42.6,
+        "dreb_per_game": 35.6,
+        "dreb_allowed_per_game": 32.1,
+        "oreb_per_game": 11.4,
+        "oreb_allowed_per_game": 10.4,
+        "stl_per_game": 7.5,
+        "stl_allowed_per_game": 7.7,
+        "blk_per_game": 5.5,
+        "blk_allowed_per_game": 4.6
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612760,
+    "abbreviation": "OKC",
+    "name": "Oklahoma City Thunder",
+    "city": "Oklahoma City",
+    "conference": "West",
+    "division": "Northwest",
+    "founded_in": 1967,
+    "championships": 2,
+    "last_season": {
+      "rank": 1,
+      "record": {
+        "wins": 64,
+        "losses": 18,
+        "win_pct": 0.78,
+        "home": "34-7",
+        "road": "30-10"
+      },
+      "power_ranking": {
+        "rank": 1,
+        "tier": "Championship Contender",
+        "power_score": 91.2,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 100.37,
+        "offensive_rating": 117.6,
+        "defensive_rating": 106.5,
+        "net_rating": 11.1,
+        "pts_per_game": 119.0,
+        "pts_allowed_per_game": 107.9,
+        "ast_per_game": 25.8,
+        "ast_allowed_per_game": 25.0,
+        "reb_per_game": 44.1,
+        "reb_allowed_per_game": 45.2,
+        "dreb_per_game": 34.6,
+        "dreb_allowed_per_game": 33.3,
+        "oreb_per_game": 9.6,
+        "oreb_allowed_per_game": 11.9,
+        "stl_per_game": 9.7,
+        "stl_allowed_per_game": 7.6,
+        "blk_per_game": 5.5,
+        "blk_allowed_per_game": 4.4
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612761,
+    "abbreviation": "TOR",
+    "name": "Toronto Raptors",
+    "city": "Toronto",
+    "conference": "East",
+    "division": "Atlantic",
+    "founded_in": 1995,
+    "championships": 1,
+    "last_season": {
+      "rank": 11,
+      "record": {
+        "wins": 46,
+        "losses": 36,
+        "win_pct": 0.561,
+        "home": "24-17",
+        "road": "22-19"
+      },
+      "power_ranking": {
+        "rank": 11,
+        "tier": "Play-in Contender",
+        "power_score": 61.0,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 99.22,
+        "offensive_rating": 115.0,
+        "defensive_rating": 112.1,
+        "net_rating": 2.9,
+        "pts_per_game": 114.6,
+        "pts_allowed_per_game": 111.8,
+        "ast_per_game": 29.5,
+        "ast_allowed_per_game": 24.5,
+        "reb_per_game": 42.1,
+        "reb_allowed_per_game": 42.9,
+        "dreb_per_game": 31.2,
+        "dreb_allowed_per_game": 31.9,
+        "oreb_per_game": 10.9,
+        "oreb_allowed_per_game": 11.0,
+        "stl_per_game": 8.8,
+        "stl_allowed_per_game": 7.8,
+        "blk_per_game": 4.8,
+        "blk_allowed_per_game": 5.0
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612762,
+    "abbreviation": "UTA",
+    "name": "Utah Jazz",
+    "city": "Utah",
+    "conference": "West",
+    "division": "Northwest",
+    "founded_in": 1974,
+    "championships": 0,
+    "last_season": {
+      "rank": 26,
+      "record": {
+        "wins": 22,
+        "losses": 60,
+        "win_pct": 0.268,
+        "home": "14-27",
+        "road": "8-33"
+      },
+      "power_ranking": {
+        "rank": 26,
+        "tier": "Rebuilding",
+        "power_score": 20.2,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 103.54,
+        "offensive_rating": 112.7,
+        "defensive_rating": 120.8,
+        "net_rating": -8.2,
+        "pts_per_game": 117.6,
+        "pts_allowed_per_game": 126.0,
+        "ast_per_game": 29.6,
+        "ast_allowed_per_game": 30.7,
+        "reb_per_game": 43.8,
+        "reb_allowed_per_game": 45.7,
+        "dreb_per_game": 31.8,
+        "dreb_allowed_per_game": 33.9,
+        "oreb_per_game": 12.0,
+        "oreb_allowed_per_game": 11.8,
+        "stl_per_game": 8.9,
+        "stl_allowed_per_game": 9.3,
+        "blk_per_game": 3.8,
+        "blk_allowed_per_game": 5.8
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612763,
+    "abbreviation": "MEM",
+    "name": "Memphis Grizzlies",
+    "city": "Memphis",
+    "conference": "West",
+    "division": "Southwest",
+    "founded_in": 1995,
+    "championships": 0,
+    "last_season": {
+      "rank": 25,
+      "record": {
+        "wins": 25,
+        "losses": 57,
+        "win_pct": 0.305,
+        "home": "13-27",
+        "road": "11-29"
+      },
+      "power_ranking": {
+        "rank": 25,
+        "tier": "Rebuilding",
+        "power_score": 27.4,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 101.69,
+        "offensive_rating": 112.4,
+        "defensive_rating": 118.4,
+        "net_rating": -6.0,
+        "pts_per_game": 114.7,
+        "pts_allowed_per_game": 120.7,
+        "ast_per_game": 27.8,
+        "ast_allowed_per_game": 28.2,
+        "reb_per_game": 42.1,
+        "reb_allowed_per_game": 46.8,
+        "dreb_per_game": 31.0,
+        "dreb_allowed_per_game": 34.0,
+        "oreb_per_game": 11.2,
+        "oreb_allowed_per_game": 12.7,
+        "stl_per_game": 8.8,
+        "stl_allowed_per_game": 8.8,
+        "blk_per_game": 4.8,
+        "blk_allowed_per_game": 5.3
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612764,
+    "abbreviation": "WAS",
+    "name": "Washington Wizards",
+    "city": "Washington",
+    "conference": "East",
+    "division": "Southeast",
+    "founded_in": 1961,
+    "championships": 1,
+    "last_season": {
+      "rank": 30,
+      "record": {
+        "wins": 17,
+        "losses": 65,
+        "win_pct": 0.207,
+        "home": "11-30",
+        "road": "6-35"
+      },
+      "power_ranking": {
+        "rank": 30,
+        "tier": "Rebuilding",
+        "power_score": 8.3,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 102.49,
+        "offensive_rating": 109.7,
+        "defensive_rating": 121.5,
+        "net_rating": -11.8,
+        "pts_per_game": 112.9,
+        "pts_allowed_per_game": 124.9,
+        "ast_per_game": 25.0,
+        "ast_allowed_per_game": 29.4,
+        "reb_per_game": 41.9,
+        "reb_allowed_per_game": 47.8,
+        "dreb_per_game": 30.9,
+        "dreb_allowed_per_game": 34.7,
+        "oreb_per_game": 11.0,
+        "oreb_allowed_per_game": 13.1,
+        "stl_per_game": 8.0,
+        "stl_allowed_per_game": 9.7,
+        "blk_per_game": 5.5,
+        "blk_allowed_per_game": 5.4
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612765,
+    "abbreviation": "DET",
+    "name": "Detroit Pistons",
+    "city": "Detroit",
+    "conference": "East",
+    "division": "Central",
+    "founded_in": 1948,
+    "championships": 3,
+    "last_season": {
+      "rank": 3,
+      "record": {
+        "wins": 60,
+        "losses": 22,
+        "win_pct": 0.732,
+        "home": "31-9",
+        "road": "28-13"
+      },
+      "power_ranking": {
+        "rank": 3,
+        "tier": "Championship Contender",
+        "power_score": 82.2,
+        "trend": "0"
+      },
+      "metrics": {
+        "pace": 99.88,
+        "offensive_rating": 117.3,
+        "defensive_rating": 108.9,
+        "net_rating": 8.4,
+        "pts_per_game": 117.8,
+        "pts_allowed_per_game": 109.6,
+        "ast_per_game": 27.8,
+        "ast_allowed_per_game": 23.5,
+        "reb_per_game": 45.6,
+        "reb_allowed_per_game": 40.5,
+        "dreb_per_game": 32.5,
+        "dreb_allowed_per_game": 29.3,
+        "oreb_per_game": 13.1,
+        "oreb_allowed_per_game": 11.3,
+        "stl_per_game": 10.4,
+        "stl_allowed_per_game": 8.9,
+        "blk_per_game": 6.4,
+        "blk_allowed_per_game": 5.8
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  },
+  {
+    "_id": 1610612766,
+    "abbreviation": "CHA",
+    "name": "Charlotte Hornets",
+    "city": "Charlotte",
+    "conference": "East",
+    "division": "Southeast",
+    "founded_in": 1988,
+    "championships": 0,
+    "last_season": {
+      "rank": 16,
+      "record": {
+        "wins": 44,
+        "losses": 38,
+        "win_pct": 0.537,
+        "home": "21-20",
+        "road": "23-18"
+      },
+      "power_ranking": {
+        "rank": 9,
+        "tier": "Playoff Contender",
+        "power_score": 65.2,
+        "trend": "+7"
+      },
+      "metrics": {
+        "pace": 97.59,
+        "offensive_rating": 118.4,
+        "defensive_rating": 113.5,
+        "net_rating": 4.9,
+        "pts_per_game": 116.0,
+        "pts_allowed_per_game": 111.2,
+        "ast_per_game": 26.3,
+        "ast_allowed_per_game": 25.9,
+        "reb_per_game": 46.1,
+        "reb_allowed_per_game": 39.3,
+        "dreb_per_game": 33.3,
+        "dreb_allowed_per_game": 29.1,
+        "oreb_per_game": 12.8,
+        "oreb_allowed_per_game": 10.2,
+        "stl_per_game": 7.0,
+        "stl_allowed_per_game": 8.2,
+        "blk_per_game": 4.5,
+        "blk_allowed_per_game": 4.4
+      }
+    },
+    "actual_season": {
+      "rank": null,
+      "record": {
+        "wins": null,
+        "losses": null,
+        "win_pct": null
+      },
+      "power_ranking": {
+        "rank": null,
+        "power_score": null,
+        "tier": null,
+        "trend": null
+      },
+      "metrics": {
+        "pace": null,
+        "offensive_rating": null,
+        "defensive_rating": null,
+        "net_rating": null,
+        "pts_per_game": null,
+        "pts_allowed_per_game": null,
+        "ast_per_game": null,
+        "ast_allowed_per_game": null,
+        "reb_per_game": null,
+        "reb_allowed_per_game": null,
+        "dreb_per_game": null,
+        "dreb_allowed_per_game": null,
+        "oreb_per_game": null,
+        "oreb_allowed_per_game": null,
+        "stl_per_game": null,
+        "stl_allowed_per_game": null,
+        "blk_per_game": null,
+        "blk_allowed_per_game": null
+      }
+    }
+  }
+]

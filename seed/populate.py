@@ -28,7 +28,6 @@ def calculate_age(birthdate: str) -> int:
 
 
 def get_db_collection(collection_name: str):
-    """Initialize and return a MongoDB collection using environment variables."""
     dotenv.load_dotenv()
     db_url = os.getenv("MONGO_URL")
     db_name = os.getenv("DATABASE_NAME", "nba_fantastic")
@@ -38,7 +37,6 @@ def get_db_collection(collection_name: str):
 
 
 def clean_float(val, default: float = 0.0, decimals: int = 1) -> float:
-    """Safely convert any value to float rounded to specified decimals, handling NaNs/Infs."""
     if val is None or pd.isna(val):
         return default
     try:
@@ -51,7 +49,6 @@ def clean_float(val, default: float = 0.0, decimals: int = 1) -> float:
 
 
 def clean_int(val, default: int = 0) -> int:
-    """Safely convert any value to integer, handling NaNs and floats."""
     if val is None or pd.isna(val):
         return default
     try:
@@ -64,7 +61,6 @@ def clean_int(val, default: int = 0) -> int:
 
 
 def clean_str(val, default: str = "") -> str:
-    """Safely convert any value to trimmed string, handling NaNs."""
     if val is None or pd.isna(val):
         return default
     s = str(val).strip()
@@ -92,61 +88,6 @@ def build_season_dict(
         "blk_avg": clean_float(blk, default=0.0, decimals=1),
         "stl_avg": clean_float(stl, default=0.0, decimals=1),
     }
-
-
-def normalize_season_item(season_item: dict) -> dict:
-    """Convert and clean a season entry (legacy nested or flat) into standard format."""
-    if not isinstance(season_item, dict):
-        return build_season_dict("Unknown", "UNK", 0, 0, 0, 0, 0, 0)
-
-    # Legacy nested format: {"1990-91": {"team": "CHI", "games_played": 82, ...}}
-    if len(season_item.keys()) == 1 and "season_year" not in season_item:
-        season_year = list(season_item.keys())[0]
-        data = season_item[season_year]
-        if not isinstance(data, dict):
-            data = {}
-    else:
-        season_year = season_item.get("season_year", "Unknown")
-        data = season_item
-
-    team = data.get("team", "UNK")
-    games_played = data.get("games_played", 0)
-
-    averages = data.get("averages")
-    if isinstance(averages, dict):
-        pts = averages.get(
-            "pts", averages.get("pts_avg", data.get("pts_avg", data.get("pts", 0)))
-        )
-        ast = averages.get(
-            "ast", averages.get("ast_avg", data.get("ast_avg", data.get("ast", 0)))
-        )
-        reb = averages.get(
-            "reb", averages.get("reb_avg", data.get("reb_avg", data.get("reb", 0)))
-        )
-        blk = averages.get(
-            "blk", averages.get("blk_avg", data.get("blk_avg", data.get("blk", 0)))
-        )
-        stl = averages.get(
-            "stl", averages.get("stl_avg", data.get("stl_avg", data.get("stl", 0)))
-        )
-    else:
-        pts = data.get("pts_avg", data.get("pts", 0))
-        ast = data.get("ast_avg", data.get("ast", 0))
-        reb = data.get("reb_avg", data.get("reb", 0))
-        blk = data.get("blk_avg", data.get("blk", 0))
-        stl = data.get("stl_avg", data.get("stl", 0))
-
-    return build_season_dict(
-        season_year=season_year,
-        team=team,
-        games_played=games_played,
-        pts=pts,
-        ast=ast,
-        reb=reb,
-        blk=blk,
-        stl=stl,
-    )
-
 
 def populate_historical_players():
     """Populate base historical player profiles from CSV into MongoDB."""
@@ -309,33 +250,6 @@ def populate_historical_players_seasons():
 
         except Exception as e:
             print(f"Error exporting seasons for player {player_id}: {e}")
-
-
-def fix_seasons_structure():
-    """Correct and clean the seasons array across all historical player records in MongoDB."""
-    collection = get_db_collection("historical_players_v2")
-    print("Starting correction and cleanup of 'seasons' array...")
-
-    players = collection.find({})
-    updated_count = 0
-
-    for player in players:
-        player_id = player.get("_id")
-        old_seasons = player.get("seasons", [])
-        if not isinstance(old_seasons, list):
-            old_seasons = []
-
-        new_seasons = [
-            normalize_season_item(season_item) for season_item in old_seasons
-        ]
-
-        collection.update_one({"_id": player_id}, {"$set": {"seasons": new_seasons}})
-        updated_count += 1
-
-    print(
-        f"\nSuccess! {updated_count} players had their seasons corrected and cleaned of NaN values."
-    )
-
 
 def populate_historical_records():
     collection = get_db_collection("historical_records")
@@ -643,6 +557,7 @@ def career_span_to_seasons_list(span: str) -> list[str]:
 def populate_player_seasons():
     df = pd.read_csv("nba_players.csv")
     pids = df["ID"].tolist()
+    print(pids)
     for pid in pids:
         player_matches = df[df["ID"].astype(str) == str(pid)]
         if player_matches.empty:
@@ -676,16 +591,16 @@ def populate_players_age():
 def populate_teams():
     col = get_db_collection("teams")
     col.delete_many({})
-    with open("full_data_teams_v2.json", "r") as f:
+    with open("teams.json", "r") as f:
         teams = json.load(f)
         col.insert_many(teams)
         f.close()
 
 
-# populate_historical_records()
-# populate_historical_players()
-# populate_historical_players_seasons()
-# populate_nba_players()
-# populate_player_seasons()
-# populate_players_age()
+populate_historical_records()
+populate_historical_players()
+populate_historical_players_seasons()
+populate_nba_players()
+populate_player_seasons()
+populate_players_age()
 populate_teams()

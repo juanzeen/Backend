@@ -280,7 +280,7 @@ async def get_players_by_team(
         }
     },
     dependencies=[rate_limit(20, 60)],
-    tags=["Predictions"]
+    tags=["Predictions"],
 )
 async def get_player_season_prediction(
     id: Annotated[
@@ -334,7 +334,7 @@ async def get_player_season_prediction(
         }
     },
     dependencies=[rate_limit(30, 60)],
-    tags=["Predictions"]
+    tags=["Predictions"],
 )
 async def get_player_matchup_prediction(
     id: Annotated[
