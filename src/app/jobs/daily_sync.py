@@ -150,7 +150,7 @@ async def sync_teams(
                 "dreb_allowed_per_game": float(o_row.get('OPP_DREB')),
                 "oreb_per_game": float(t_row.get('OREB')),
                 "oreb_allowed_per_game": float(o_row.get('OPP_OREB')),
-                "ast__per_game": float(t_row.get("AST")),
+                "ast_per_game": float(t_row.get("AST")),
                 "ast_allowed_per_game": float(o_row["OPP_AST"]),
                 "stl_per_game": float(t_row.get("STL")),
                 "stl_allowed_per_game": float(o_row["OPP_STL"]),
