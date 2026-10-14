@@ -440,7 +440,7 @@ def extract_current_nba_players():
         "Season Avg Blocks",
         "Season Avg Steals",
         "Player Slug",
-        "Career Span"
+        "Career Span",
     ]
     with open(file_name, "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=headers)

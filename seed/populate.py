@@ -89,6 +89,7 @@ def build_season_dict(
         "stl_avg": clean_float(stl, default=0.0, decimals=1),
     }
 
+
 def populate_historical_players():
     """Populate base historical player profiles from CSV into MongoDB."""
     file_path = "nba_legends_2.csv"
@@ -250,6 +251,7 @@ def populate_historical_players_seasons():
 
         except Exception as e:
             print(f"Error exporting seasons for player {player_id}: {e}")
+
 
 def populate_historical_records():
     collection = get_db_collection("historical_records")
