@@ -102,7 +102,7 @@ async def test_get_players():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/")
+        response = await ac.get("/api/v1/players/")
         data = response.json().get("data", [])
         message = response.json().get("message", "")
     app.dependency_overrides.clear()
@@ -127,7 +127,7 @@ async def test_get_nba_players_custom_pagination():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?page=2&limit=5")
+        response = await ac.get("/api/v1/players/?page=2&limit=5")
         players = response.json().get("data", [])
         pagination_metadata = response.json().get("pagination", None)
         message = response.json().get("message", "")
@@ -156,7 +156,7 @@ async def test_get_nba_players_pagination_flags_first_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?limit=10&page=1")
+        response = await ac.get("/api/v1/players/?limit=10&page=1")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -181,7 +181,7 @@ async def test_get_nba_players_pagination_flags_last_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?limit=10&page=16")
+        response = await ac.get("/api/v1/players/?limit=10&page=16")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -206,7 +206,7 @@ async def test_get_nba_players_pagination_flags_middle_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?limit=10&page=10")
+        response = await ac.get("/api/v1/players/?limit=10&page=10")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -230,7 +230,7 @@ async def test_fail_get_players():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/")
+        response = await ac.get("/api/v1/players/")
         data = response.json().get("data", [])
         message = response.json().get("detail", "").get("message", "")
     app.dependency_overrides.clear()
@@ -256,7 +256,7 @@ async def test_fail_get_nba_players_limit_zero():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?limit=0")
+        response = await ac.get("/api/v1/players/?limit=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -282,7 +282,7 @@ async def test_fail_get_nba_players_page_invalid_type():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?page=abcdedfg")
+        response = await ac.get("/api/v1/players/?page=abcdedfg")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -311,7 +311,7 @@ async def test_fail_get_nba_players_page_limit_too_high():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?limit=300")
+        response = await ac.get("/api/v1/players/?limit=300")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -337,7 +337,7 @@ async def test_fail_get_nba_players_page_too_low():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/?page=0")
+        response = await ac.get("/api/v1/players/?page=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -356,7 +356,7 @@ async def test_get_player(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/1630173")
+        response = await ac.get("/api/v1/players/1630173")
         data = response.json().get("data", None)
         career_games = data.get("career", {}).get("totals", {}).get("games", 0)
         message = response.json().get("message", "")
@@ -378,7 +378,7 @@ async def test_fail_get_player(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/1231")
+        response = await ac.get("/api/v1/players/1231")
         message = response.json().get("detail", "").get("message")
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -395,7 +395,7 @@ async def test_fail_get_player_invalid_id_format():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/alsk{tsaxa}123")
+        response = await ac.get("/api/v1/players/alsk{tsaxa}123")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -417,7 +417,7 @@ async def test_fail_get_player_invalid_id_too_low():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/9")
+        response = await ac.get("/api/v1/players/9")
         print(response.json())
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
@@ -437,7 +437,7 @@ async def test_fail_get_player_invalid_id_too_large():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/10000000")
+        response = await ac.get("/api/v1/players/10000000")
         print(response.json())
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
@@ -457,7 +457,7 @@ async def test_get_nba_player_by_slug(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/search/precious-achiuwa")
+        response = await ac.get("/api/v1/players/search/precious-achiuwa")
         player = response.json().get("data", [])
         message = response.json().get("message", "")
     app.dependency_overrides.clear()
@@ -477,7 +477,7 @@ async def test_fail_get_nba_player_by_slug(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/search/precious-achiuwa")
+        response = await ac.get("/api/v1/players/search/precious-achiuwa")
         message = response.json().get("detail", "").get("message", "")
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -494,7 +494,7 @@ async def test_fail_get_nba_player_by_slug_too_short():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/search/prec")
+        response = await ac.get("/api/v1/players/search/prec")
         message = response.json().get("detail", "")[0].get("msg", "")
     app.dependency_overrides.clear()
     assert response.status_code == 422
@@ -513,7 +513,7 @@ async def test_get_players_by_team_abbreviation(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/team/mia")
+        response = await ac.get("/api/v1/players/team/mia")
         print(response)
         data = response.json().get("data")
         message = response.json().get("message", "")
@@ -536,7 +536,7 @@ async def test_fail_get_players_by_team_abbreviation_not_found(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/team/mis")
+        response = await ac.get("/api/v1/players/team/mis")
         print(response)
         message = response.json().get("detail").get("message", "")
     app.dependency_overrides.clear()
@@ -554,7 +554,7 @@ async def test_fail_get_players_by_team_abbreviation_too_short():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/team/mi")
+        response = await ac.get("/api/v1/players/team/mi")
         print(response)
         message = response.json().get("detail")[0].get("msg", "")
     app.dependency_overrides.clear()
@@ -572,7 +572,7 @@ async def test_fail_get_players_by_team_abbreviation_too_long():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/team/miami")
+        response = await ac.get("/api/v1/players/team/miami")
         print(response)
         message = response.json().get("detail")[0].get("msg", "")
     app.dependency_overrides.clear()
@@ -614,7 +614,9 @@ async def test_get_player_season_prediction():
         async with AsyncClient(
             transport=ASGITransport(app=app), base_url="http://test"
         ) as ac:
-            response = await ac.get(f"/players/{mock_p1['_id']}/predictions/season")
+            response = await ac.get(
+                f"/api/v1/players/{mock_p1['_id']}/predictions/season"
+            )
             data = response.json().get("data")
             message = response.json().get("message", "")
     app.dependency_overrides.clear()
@@ -637,7 +639,7 @@ async def test_fail_get_player_season_prediction_not_found():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/999999/predictions/season")
+        response = await ac.get("/api/v1/players/999999/predictions/season")
         message = response.json().get("detail", {}).get("message", "")
     app.dependency_overrides.clear()
 
@@ -650,7 +652,7 @@ async def test_fail_get_player_season_prediction_invalid_id():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/5/predictions/season")
+        response = await ac.get("/api/v1/players/5/predictions/season")
     assert response.status_code == 422
 
 
@@ -673,7 +675,7 @@ async def test_get_player_matchup_prediction_home():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         response = await ac.get(
-            f"/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=true"
+            f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=true"
         )
         data = response.json().get("data")
         message = response.json().get("message", "")
@@ -707,7 +709,7 @@ async def test_get_player_matchup_prediction_away():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         response = await ac.get(
-            f"/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=false"
+            f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=false"
         )
         data = response.json().get("data")
     app.dependency_overrides.clear()
@@ -734,7 +736,7 @@ async def test_fail_get_player_matchup_prediction_player_not_found():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/999999/predictions/matchup/1610612737")
+        response = await ac.get("/api/v1/players/999999/predictions/matchup/1610612737")
         message = response.json().get("detail", {}).get("message", "")
     app.dependency_overrides.clear()
 
@@ -761,7 +763,7 @@ async def test_fail_get_player_matchup_prediction_team_not_found():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         response = await ac.get(
-            f"/players/{mock_p1['_id']}/predictions/matchup/1610612737"
+            f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737"
         )
         message = response.json().get("detail", {}).get("message", "")
     app.dependency_overrides.clear()
@@ -776,9 +778,9 @@ async def test_fail_get_player_matchup_prediction_invalid_ids():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         # Invalid player id (<= 10)
-        res1 = await ac.get("/players/5/predictions/matchup/1610612737")
+        res1 = await ac.get("/api/v1/players/5/predictions/matchup/1610612737")
         assert res1.status_code == 422
 
         # Invalid opponent team id (<= 999999999)
-        res2 = await ac.get(f"/players/{mock_p1['_id']}/predictions/matchup/100")
+        res2 = await ac.get(f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/100")
         assert res2.status_code == 422

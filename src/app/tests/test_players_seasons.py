@@ -331,7 +331,7 @@ async def test_get_player_seasons():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons")
+        response = await ac.get("/api/v1/players/2544/seasons")
         data = response.json().get("data", [])
         pagination = response.json().get("pagination", {})
         message = response.json().get("message", "")
@@ -363,7 +363,7 @@ async def test_get_player_seasons_custom_pagination():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?page=2&limit=5")
+        response = await ac.get("/api/v1/players/2544/seasons?page=2&limit=5")
         data = response.json().get("data", [])
         pagination_metadata = response.json().get("pagination", None)
         message = response.json().get("message", "")
@@ -394,7 +394,7 @@ async def test_get_player_seasons_pagination_flags_first_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?limit=5&page=1")
+        response = await ac.get("/api/v1/players/2544/seasons?limit=5&page=1")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -419,7 +419,7 @@ async def test_get_player_seasons_pagination_flags_last_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?limit=5&page=3")
+        response = await ac.get("/api/v1/players/2544/seasons?limit=5&page=3")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -444,7 +444,7 @@ async def test_get_player_seasons_pagination_flags_middle_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?limit=5&page=2")
+        response = await ac.get("/api/v1/players/2544/seasons?limit=5&page=2")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -468,7 +468,7 @@ async def test_fail_get_player_seasons_not_found_player_id():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons")
+        response = await ac.get("/api/v1/players/2544/seasons")
         message = response.json().get("detail").get("message", "")
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -491,7 +491,7 @@ async def test_fail_get_player_seasons_empty_list():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons")
+        response = await ac.get("/api/v1/players/2544/seasons")
         message = response.json().get("detail").get("message", "")
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -515,7 +515,7 @@ async def test_fail_get_player_seasons_limit_zero():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?limit=0")
+        response = await ac.get("/api/v1/players/2544/seasons?limit=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -541,7 +541,7 @@ async def test_fail_get_player_seasons_page_limit_too_high():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?limit=300")
+        response = await ac.get("/api/v1/players/2544/seasons?limit=300")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -567,7 +567,7 @@ async def test_fail_get_player_seasons_page_too_low():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?page=0")
+        response = await ac.get("/api/v1/players/2544/seasons?page=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -593,7 +593,7 @@ async def test_fail_get_player_seasons_page_invalid_type():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons?page=abcdedfg")
+        response = await ac.get("/api/v1/players/2544/seasons?page=abcdedfg")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -621,7 +621,7 @@ async def test_fail_get_player_seasons_invalid_player_id_too_short():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/9/seasons")
+        response = await ac.get("/api/v1/players/9/seasons")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -646,7 +646,7 @@ async def test_fail_get_player_seasons_invalid_player_id_boundary_lower():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/10/seasons")
+        response = await ac.get("/api/v1/players/10/seasons")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -671,7 +671,7 @@ async def test_fail_get_player_seasons_invalid_player_id_too_long():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/9999999999/seasons")
+        response = await ac.get("/api/v1/players/9999999999/seasons")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -696,7 +696,7 @@ async def test_fail_get_player_seasons_invalid_player_id_boundary_upper():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/10000000/seasons")
+        response = await ac.get("/api/v1/players/10000000/seasons")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -721,7 +721,7 @@ async def test_fail_get_player_seasons_invalid_player_id_type():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/lebronjames/seasons")
+        response = await ac.get("/api/v1/players/lebronjames/seasons")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -743,7 +743,7 @@ async def test_get_player_season_by_year(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons/2022-23")
+        response = await ac.get("/api/v1/players/2544/seasons/2022-23")
         message = response.json().get("message")
         data = response.json().get("data")
     app.dependency_overrides.clear()
@@ -768,7 +768,7 @@ async def test_fail_get_player_season_not_found(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons/1998-99")
+        response = await ac.get("/api/v1/players/2544/seasons/1998-99")
         message = response.json().get("detail").get("message")
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -785,7 +785,7 @@ async def test_fail_get_player_season_invalid_season_too_short():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons/1998")
+        response = await ac.get("/api/v1/players/2544/seasons/1998")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
     assert response.status_code == 422
@@ -802,7 +802,7 @@ async def test_fail_get_player_season_invalid_season_too_long():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/2544/seasons/1998-1999")
+        response = await ac.get("/api/v1/players/2544/seasons/1998-1999")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
     assert response.status_code == 422
@@ -819,7 +819,7 @@ async def test_fail_get_player_season_invalid_player_id_too_short():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/9/seasons/2022-23")
+        response = await ac.get("/api/v1/players/9/seasons/2022-23")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -838,7 +838,7 @@ async def test_fail_get_player_season_invalid_player_id_boundary_lower():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/10/seasons/2022-23")
+        response = await ac.get("/api/v1/players/10/seasons/2022-23")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -857,7 +857,7 @@ async def test_fail_get_player_season_invalid_player_id_too_long():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/9999999999/seasons/2022-23")
+        response = await ac.get("/api/v1/players/9999999999/seasons/2022-23")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -876,7 +876,7 @@ async def test_fail_get_player_season_invalid_player_id_boundary_upper():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/10000000/seasons/2022-23")
+        response = await ac.get("/api/v1/players/10000000/seasons/2022-23")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -895,7 +895,7 @@ async def test_fail_get_player_season_invalid_player_id_type():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/players/lebronjames/seasons/2022-23")
+        response = await ac.get("/api/v1/players/lebronjames/seasons/2022-23")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()

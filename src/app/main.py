@@ -4,10 +4,10 @@ from .routers import historical_players, historical_records, players, teams
 
 app = FastAPI()
 
-app.include_router(historical_players.router)
-app.include_router(historical_records.router)
-app.include_router(players.router)
-app.include_router(teams.router)
+app.include_router(historical_players.router, prefix="/api/v1")
+app.include_router(historical_records.router, prefix="/api/v1")
+app.include_router(players.router, prefix="/api/v1")
+app.include_router(teams.router, prefix="/api/v1")
 
 
 @app.get(

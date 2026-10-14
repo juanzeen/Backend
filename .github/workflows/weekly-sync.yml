@@ -1,0 +1,47 @@
+name: NBA FANtastic Weekly Sync
+
+on:
+  schedule:
+    - cron: "30 02 * * 0"
+  workflow_dispatch:
+
+jobs:
+  run-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install 3.14
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run weekly job
+        env:
+          MONGO_URL: ${{secrets.MONGO_URL}}
+          DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+          CURRENT_SEASON: ${{vars.CURRENT_SEASON || '2026-27'}}
+        run: uv run python -m src.app.jobs.weekly_sync
+
+      - name: Post Log to GitHub Summary
+        if: always()
+        run: |
+          if [ -f weekly-report.log ]; then
+          echo "### Sync Output" >> $GITHUB_STEP_SUMMARY
+          echo '```text' >> $GITHUB_STEP_SUMMARY
+          cat weekly-report.log >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload Log Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-sync-log-${{ github.run_id }}
+          path: weekly-report.log
+          retention-days: 7

@@ -439,12 +439,15 @@ def extract_current_nba_players():
         "Season Avg Assists",
         "Season Avg Blocks",
         "Season Avg Steals",
+        "Player Slug",
+        "Career Span",
     ]
-    with open(file_name, "w", newline="", encoding="utf-8") as f:
+    with open(file_name, "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=headers)
         if not os.path.isfile(file_name):
             writer.writeheader()
         for p in active_players:
+            print(p)
             id = p.get("id")
             full_name = p.get("full_name")
             try:
@@ -679,4 +682,4 @@ def calculate_power_score():
 
 
 if __name__ == "__main__":
-    extract_legendary_players()
+    extract_current_nba_players()

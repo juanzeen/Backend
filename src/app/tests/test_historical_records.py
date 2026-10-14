@@ -32,7 +32,7 @@ async def test_get_historical_records(mock_redis):
     mock_db.__getitem__.return_value = mock_collection
     app.dependency_overrides[get_db] = lambda: mock_db
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://") as ac:
-        response = await ac.get("/historical-records/")
+        response = await ac.get("/api/v1/historical-records/")
         print(response)
         data = response.json().get("data", [])
         message = response.json().get("message", None)
@@ -52,7 +52,7 @@ async def test_fail_get_historical_records(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-records/")
+        response = await ac.get("/api/v1/historical-records/")
         message = response.json().get("detail", None).get("message", None)
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -69,7 +69,7 @@ async def test_fail_get_historical_records_empty_array(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-records/")
+        response = await ac.get("/api/v1/historical-records/")
         message = response.json().get("detail", None).get("message", None)
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -95,7 +95,7 @@ async def test_get_historical_record_by_category(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-records/ALL_TIME_PTS")
+        response = await ac.get("/api/v1/historical-records/ALL_TIME_PTS")
         data = response.json().get("data", None)
         message = response.json().get("message", [])
     app.dependency_overrides.clear()
@@ -114,7 +114,7 @@ async def test_fail_get_historical_record_by_category_inexistent_category(mock_r
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-records/AL_TIME_PT")
+        response = await ac.get("/api/v1/historical-records/AL_TIME_PT")
         message = response.json().get("detail").get("message", [])
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -131,7 +131,7 @@ async def test_fail_get_historical_record_by_category_short_category():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-records/ALL_TIME_POINTS")
+        response = await ac.get("/api/v1/historical-records/ALL_TIME_POINTS")
         message = response.json().get("detail")[0].get("msg")
         detail = response.json().get("detail")[0].get("type")
     app.dependency_overrides.clear()
@@ -151,7 +151,7 @@ async def test_fail_get_historical_record_by_category_long_category():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-records/AA")
+        response = await ac.get("/api/v1/historical-records/AA")
         message = response.json().get("detail")[0].get("msg")
         detail = response.json().get("detail")[0].get("type")
     app.dependency_overrides.clear()

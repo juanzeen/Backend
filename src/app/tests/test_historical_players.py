@@ -181,7 +181,7 @@ async def test_get_historical_players():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/")
+        response = await ac.get("/api/v1/historical-players/")
         players = response.json().get("data", [])
         message = response.json().get("message", "")
     app.dependency_overrides.clear()
@@ -208,7 +208,7 @@ async def test_get_historical_players_custom_pagination():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?page=2&limit=5")
+        response = await ac.get("/api/v1/historical-players/?page=2&limit=5")
         players = response.json().get("data", [])
         pagination_metadata = response.json().get("pagination", None)
         message = response.json().get("message", "")
@@ -239,7 +239,7 @@ async def test_get_historical_players_pagination_flags_first_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?limit=10&page=1")
+        response = await ac.get("/api/v1/historical-players/?limit=10&page=1")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -266,7 +266,7 @@ async def test_get_historical_players_pagination_flags_last_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?limit=10&page=16")
+        response = await ac.get("/api/v1/historical-players/?limit=10&page=16")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -293,7 +293,7 @@ async def test_get_historical_players_pagination_flags_middle_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?limit=10&page=10")
+        response = await ac.get("/api/v1/historical-players/?limit=10&page=10")
         pagination_meta = response.json().get("pagination", None)
     app.dependency_overrides.clear()
     assert response.status_code == 200
@@ -318,7 +318,7 @@ async def test_fail_get_historical_players():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/")
+        response = await ac.get("/api/v1/historical-players/")
         players = response.json().get("data", [])
         message = response.json().get("detail", "").get("message", "")
     app.dependency_overrides.clear()
@@ -344,7 +344,7 @@ async def test_fail_get_historical_players_page_too_low():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?page=0")
+        response = await ac.get("/api/v1/historical-players/?page=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -370,7 +370,7 @@ async def test_fail_get_historical_players_limit_zero():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?limit=0")
+        response = await ac.get("/api/v1/historical-players/?limit=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -396,7 +396,7 @@ async def test_fail_get_historical_players_page_invalid_type():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?page=abcdedfg")
+        response = await ac.get("/api/v1/historical-players/?page=abcdedfg")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -425,7 +425,7 @@ async def test_fail_get_historical_players_page_limit_too_high():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/?limit=300")
+        response = await ac.get("/api/v1/historical-players/?limit=300")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -444,7 +444,7 @@ async def test_get_historical_player_by_id(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/200746")
+        response = await ac.get("/api/v1/historical-players/200746")
         player = response.json().get("data", [])
         message = response.json().get("message", "")
     app.dependency_overrides.clear()
@@ -464,7 +464,7 @@ async def test_fail_get_historical_player_by_id(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/123123")
+        response = await ac.get("/api/v1/historical-players/123123")
         message = response.json().get("detail", "").get("message", "")
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -481,7 +481,7 @@ async def test_fail_get_historical_player_by_id_small_id():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/1")
+        response = await ac.get("/api/v1/historical-players/1")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
     assert response.status_code == 422
@@ -498,7 +498,7 @@ async def test_fail_get_historical_player_by_id_big_id():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/123321987")
+        response = await ac.get("/api/v1/historical-players/123321987")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
     assert response.status_code == 422
@@ -515,7 +515,7 @@ async def test_get_historical_player_by_slug(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/search/lamarcus-aldridge")
+        response = await ac.get("/api/v1/historical-players/search/lamarcus-aldridge")
         player = response.json().get("data", [])
         message = response.json().get("message", "")
     app.dependency_overrides.clear()
@@ -535,7 +535,7 @@ async def test_fail_get_historical_player_by_slug(mock_redis):
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/search/lamarcuz-aldridg")
+        response = await ac.get("/api/v1/historical-players/search/lamarcuz-aldridg")
         message = response.json().get("detail", "").get("message", "")
     app.dependency_overrides.clear()
     assert response.status_code == 404
@@ -552,7 +552,7 @@ async def test_fail_get_historical_player_by_id_too_short():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/historical-players/search/leb")
+        response = await ac.get("/api/v1/historical-players/search/leb")
         message = response.json().get("detail", "")[0].get("msg", "")
     app.dependency_overrides.clear()
     assert response.status_code == 422
