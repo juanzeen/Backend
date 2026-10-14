@@ -1,0 +1,48 @@
+name: NBA Daily Sync
+
+on:
+  schedule:
+    - cron: "15 7 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install 3.14
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run Daily Sync Job
+        env:
+          MONGO_URL: ${{ secrets.MONGO_URL }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          CURRENT_SEASON: ${{ vars.CURRENT_SEASON || '2025-26' }}
+        run: uv run python -m src.app.jobs.daily_sync
+
+      - name: Post Log to GitHub Summary
+        if: always()
+        run: |
+          if [ -f daily-report.log ]; then
+            echo "### Sync Output" >> $GITHUB_STEP_SUMMARY
+            echo '```text' >> $GITHUB_STEP_SUMMARY
+            cat daily-report.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload Log Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-sync-log-${{ github.run_id }}
+          path: daily-report.log
+          retention-days: 7
