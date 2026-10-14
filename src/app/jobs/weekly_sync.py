@@ -9,8 +9,9 @@ from ..dependencies import get_db
 
 file_handler = logging.FileHandler("weekly-report.log")
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[file_handler]
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[file_handler],
 )
 logger = logging.getLogger(__name__)
 

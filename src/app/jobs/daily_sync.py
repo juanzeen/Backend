@@ -71,8 +71,12 @@ async def sync_teams(
     logger.info("Starting teams sync for season %s...", season)
     start_time = time.time()
 
-    standings_df = leaguestandingsv3.LeagueStandingsV3(season=season).get_data_frames()[0]
-    stats_df = leaguedashteamstats.LeagueDashTeamStats(season=season, per_mode_detailed="PerGame").get_data_frames()[0]
+    standings_df = leaguestandingsv3.LeagueStandingsV3(season=season).get_data_frames()[
+        0
+    ]
+    stats_df = leaguedashteamstats.LeagueDashTeamStats(
+        season=season, per_mode_detailed="PerGame"
+    ).get_data_frames()[0]
     time.sleep(1.0)
     adv_df = leaguedashteamstats.LeagueDashTeamStats(
         measure_type_detailed_defense="Advanced", season=season
@@ -146,10 +150,10 @@ async def sync_teams(
                 "pts_allowed_per_game": float(o_row["OPP_PTS"]),
                 "reb_per_game": float(t_row.get("REB", 0.0)),
                 "reb_allowed_per_game": float(o_row["OPP_REB"]),
-                "dreb_per_game": float(t_row.get('DREB')),
-                "dreb_allowed_per_game": float(o_row.get('OPP_DREB')),
-                "oreb_per_game": float(t_row.get('OREB')),
-                "oreb_allowed_per_game": float(o_row.get('OPP_OREB')),
+                "dreb_per_game": float(t_row.get("DREB")),
+                "dreb_allowed_per_game": float(o_row.get("OPP_DREB")),
+                "oreb_per_game": float(t_row.get("OREB")),
+                "oreb_allowed_per_game": float(o_row.get("OPP_OREB")),
                 "ast_per_game": float(t_row.get("AST")),
                 "ast_allowed_per_game": float(o_row["OPP_AST"]),
                 "stl_per_game": float(t_row.get("STL")),
@@ -284,7 +288,9 @@ async def sync_players(
 
     if player_bulk_ops:
         await db["players_cron_test"].bulk_write(player_bulk_ops, ordered=False)
-        logger.info("Updated %d players in collection '%s'.", len(player_bulk_ops), "players")
+        logger.info(
+            "Updated %d players in collection '%s'.", len(player_bulk_ops), "players"
+        )
 
     logs_df = playergamelogs.PlayerGameLogs(
         season_nullable=season,
@@ -293,7 +299,10 @@ async def sync_players(
     ).get_data_frames()[0]
 
     if logs_df.empty:
-        logger.info("No games played on %s. Completed player sync without season game additions.", date)
+        logger.info(
+            "No games played on %s. Completed player sync without season game additions.",
+            date,
+        )
         elapsed = time.time() - start_time
         return {
             "players_updated": len(player_bulk_ops),
@@ -310,9 +319,11 @@ async def sync_players(
     )
 
     active_season_ids = [f"{pid}_{season}" for pid in pids]
-    existing_docs = await db["players_seasons"].find(
-        {"_id": {"$in": active_season_ids}}
-    ).to_list(length=None)
+    existing_docs = (
+        await db["players_seasons"]
+        .find({"_id": {"$in": active_season_ids}})
+        .to_list(length=None)
+    )
     existing_map = {doc["_id"]: doc for doc in existing_docs}
 
     season_bulk_ops = []
@@ -326,7 +337,9 @@ async def sync_players(
             matchup = str(first_row["MATCHUP"])
             team_abbr = matchup.split()[0]
             team_data = teams.find_team_by_abbreviation(team_abbr)
-            team_name = team_data["full_name"] if team_data else str(first_row["TEAM_NAME"])
+            team_name = (
+                team_data["full_name"] if team_data else str(first_row["TEAM_NAME"])
+            )
 
             doc = {
                 "_id": season_id,
@@ -371,9 +384,15 @@ async def sync_players(
                 "reb": int(row["REB"]),
                 "stl": int(row["STL"]),
                 "blk": int(row["BLK"]),
-                "fg_pct": round(float(row["FG_PCT"]), 3) if pd.notna(row["FG_PCT"]) else 0.0,
-                "fg3_pct": round(float(row["FG3_PCT"]), 3) if pd.notna(row["FG3_PCT"]) else 0.0,
-                "ft_pct": round(float(row["FT_PCT"]), 3) if pd.notna(row["FT_PCT"]) else 0.0,
+                "fg_pct": round(float(row["FG_PCT"]), 3)
+                if pd.notna(row["FG_PCT"])
+                else 0.0,
+                "fg3_pct": round(float(row["FG3_PCT"]), 3)
+                if pd.notna(row["FG3_PCT"])
+                else 0.0,
+                "ft_pct": round(float(row["FT_PCT"]), 3)
+                if pd.notna(row["FT_PCT"])
+                else 0.0,
             }
 
             if game_id not in existing_game_ids:
@@ -415,15 +434,17 @@ async def sync_players(
         if not games_df.empty:
             perf_list = []
             for opp, group in games_df.groupby("opponent"):
-                perf_list.append({
-                    "team": opp,
-                    "games_played": len(group),
-                    "avg_pts": round(float(group["pts"].mean()), 1),
-                    "avg_ast": round(float(group["ast"].mean()), 1),
-                    "avg_reb": round(float(group["reb"].mean()), 1),
-                    "avg_blk": round(float(group["blk"].mean()), 1),
-                    "avg_stl": round(float(group["stl"].mean()), 1),
-                })
+                perf_list.append(
+                    {
+                        "team": opp,
+                        "games_played": len(group),
+                        "avg_pts": round(float(group["pts"].mean()), 1),
+                        "avg_ast": round(float(group["ast"].mean()), 1),
+                        "avg_reb": round(float(group["reb"].mean()), 1),
+                        "avg_blk": round(float(group["blk"].mean()), 1),
+                        "avg_stl": round(float(group["stl"].mean()), 1),
+                    }
+                )
             doc["performance_vs_teams"] = sorted(perf_list, key=lambda x: x["team"])
 
         season_bulk_ops.append(
@@ -452,15 +473,11 @@ async def sync_players(
     }
 
 
-async def run_daily_sync(
-    season: str | None = None
-) -> None:
+async def run_daily_sync(season: str | None = None) -> None:
     target_season = season or DEFAULT_SEASON
     today = datetime.now(ZoneInfo("America/New_York"))
     logger.info(
-        "=== Starting Daily NBA Sync Job [%s | Date: %s] ===",
-        target_season,
-        today
+        "=== Starting Daily NBA Sync Job [%s | Date: %s] ===", target_season, today
     )
     start_total = time.time()
 

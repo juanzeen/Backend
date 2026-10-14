@@ -614,7 +614,9 @@ async def test_get_player_season_prediction():
         async with AsyncClient(
             transport=ASGITransport(app=app), base_url="http://test"
         ) as ac:
-            response = await ac.get(f"/api/v1/players/{mock_p1['_id']}/predictions/season")
+            response = await ac.get(
+                f"/api/v1/players/{mock_p1['_id']}/predictions/season"
+            )
             data = response.json().get("data")
             message = response.json().get("message", "")
     app.dependency_overrides.clear()
@@ -673,7 +675,7 @@ async def test_get_player_matchup_prediction_home():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         response = await ac.get(
-           f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=true"
+            f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=true"
         )
         data = response.json().get("data")
         message = response.json().get("message", "")
@@ -707,7 +709,7 @@ async def test_get_player_matchup_prediction_away():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         response = await ac.get(
-          f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=false"
+            f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737?is_home=false"
         )
         data = response.json().get("data")
     app.dependency_overrides.clear()
@@ -761,7 +763,7 @@ async def test_fail_get_player_matchup_prediction_team_not_found():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         response = await ac.get(
-          f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737"
+            f"/api/v1/players/{mock_p1['_id']}/predictions/matchup/1610612737"
         )
         message = response.json().get("detail", {}).get("message", "")
     app.dependency_overrides.clear()
