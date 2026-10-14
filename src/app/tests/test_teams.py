@@ -132,7 +132,7 @@ async def test_get_teams():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/")
+        response = await ac.get("/api/v1/teams/")
         data = response.json().get("data", [])
         pagination_meta = response.json().get("pagination", {})
         message = response.json().get("message", None)
@@ -172,7 +172,7 @@ async def test_get_teams_custom_pagination():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?page=2&limit=5")
+        response = await ac.get("/api/v1/teams/?page=2&limit=5")
         data = response.json().get("data", [])
         pagination_metadata = response.json().get("pagination", {})
         message = response.json().get("message", "")
@@ -206,7 +206,7 @@ async def test_get_teams_pagination_flags_first_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?limit=10&page=1")
+        response = await ac.get("/api/v1/teams/?limit=10&page=1")
         pagination_meta = response.json().get("pagination", {})
     app.dependency_overrides.clear()
 
@@ -232,7 +232,7 @@ async def test_get_teams_pagination_flags_last_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?limit=10&page=3")
+        response = await ac.get("/api/v1/teams/?limit=10&page=3")
         pagination_meta = response.json().get("pagination", {})
     app.dependency_overrides.clear()
 
@@ -258,7 +258,7 @@ async def test_get_teams_pagination_flags_middle_page():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?limit=10&page=2")
+        response = await ac.get("/api/v1/teams/?limit=10&page=2")
         pagination_meta = response.json().get("pagination", {})
     app.dependency_overrides.clear()
 
@@ -284,7 +284,7 @@ async def test_fail_get_teams_not_found_none():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/")
+        response = await ac.get("/api/v1/teams/")
         data = response.json().get("data", [])
         message = response.json().get("detail", {}).get("message", None)
     app.dependency_overrides.clear()
@@ -311,7 +311,7 @@ async def test_fail_get_teams_not_found_empty_array():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/")
+        response = await ac.get("/api/v1/teams/")
         data = response.json().get("data", [])
         message = response.json().get("detail", {}).get("message", None)
     app.dependency_overrides.clear()
@@ -338,7 +338,7 @@ async def test_fail_get_teams_page_too_low():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?page=0")
+        response = await ac.get("/api/v1/teams/?page=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -365,7 +365,7 @@ async def test_fail_get_teams_limit_zero():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?limit=0")
+        response = await ac.get("/api/v1/teams/?limit=0")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -392,7 +392,7 @@ async def test_fail_get_teams_page_invalid_type():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?page=abcdedfg")
+        response = await ac.get("/api/v1/teams/?page=abcdedfg")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -422,7 +422,7 @@ async def test_fail_get_teams_limit_too_high():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/?limit=300")
+        response = await ac.get("/api/v1/teams/?limit=300")
         error_type = response.json().get("detail")[0].get("type")
         message = response.json().get("detail")[0].get("msg")
     app.dependency_overrides.clear()
@@ -443,7 +443,7 @@ async def test_get_team_by_id():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/1610612737")
+        response = await ac.get("/api/v1/teams/1610612737")
         data = response.json().get("data", None)
         message = response.json().get("message", None)
     app.dependency_overrides.clear()
@@ -469,7 +469,7 @@ async def test_fail_get_team_by_id_not_found():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/1610612799")
+        response = await ac.get("/api/v1/teams/1610612799")
         message = response.json().get("detail", {}).get("message", None)
     app.dependency_overrides.clear()
 
@@ -487,7 +487,7 @@ async def test_fail_get_team_by_id_below_minimum():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/123")
+        response = await ac.get("/api/v1/teams/123")
         detail = response.json().get("detail", [])
     app.dependency_overrides.clear()
 
@@ -505,7 +505,7 @@ async def test_fail_get_team_by_id_boundary_minimum():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/999999999")
+        response = await ac.get("/api/v1/teams/999999999")
         detail = response.json().get("detail", [])
     app.dependency_overrides.clear()
 
@@ -523,7 +523,7 @@ async def test_fail_get_team_by_id_not_integer():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/invalid_team_id")
+        response = await ac.get("/api/v1/teams/invalid_team_id")
         detail = response.json().get("detail", [])
     app.dependency_overrides.clear()
 
@@ -542,7 +542,7 @@ async def test_get_team_by_abbreviation():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/search/ATL/")
+        response = await ac.get("/api/v1/teams/search/ATL/")
         data = response.json().get("data", None)
         message = response.json().get("message", None)
     app.dependency_overrides.clear()
@@ -566,7 +566,7 @@ async def test_fail_get_team_by_abbreviation_not_found():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/search/XYZ/")
+        response = await ac.get("/api/v1/teams/search/XYZ/")
         message = response.json().get("detail", {}).get("message", None)
     app.dependency_overrides.clear()
 
@@ -584,7 +584,7 @@ async def test_fail_get_team_by_abbreviation_too_short():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/search/AT/")
+        response = await ac.get("/api/v1/teams/search/AT/")
         detail = response.json().get("detail", [])
     app.dependency_overrides.clear()
 
@@ -602,7 +602,7 @@ async def test_fail_get_team_by_abbreviation_too_long():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
-        response = await ac.get("/teams/search/ATLA/")
+        response = await ac.get("/api/v1/teams/search/ATLA/")
         detail = response.json().get("detail", [])
     app.dependency_overrides.clear()
 
