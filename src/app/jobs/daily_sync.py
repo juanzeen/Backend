@@ -25,7 +25,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-DEFAULT_SEASON = os.getenv("CURRENT_SEASON", "2026-27")
+DEFAULT_SEASON = os.getenv("CURRENT_SEASON", "2025-26")
 
 
 # Helpers
@@ -283,7 +283,7 @@ async def sync_players(
         )
 
     if player_bulk_ops:
-        await db["players"].bulk_write(player_bulk_ops, ordered=False)
+        await db["players_cron_test"].bulk_write(player_bulk_ops, ordered=False)
         logger.info("Updated %d players in collection '%s'.", len(player_bulk_ops), "players")
 
     logs_df = playergamelogs.PlayerGameLogs(
@@ -431,7 +431,7 @@ async def sync_players(
         )
 
     if season_bulk_ops:
-        await db["players_seasons"].bulk_write(season_bulk_ops, ordered=False)
+        await db["players_seasons_cron_test"].bulk_write(season_bulk_ops, ordered=False)
         logger.info(
             "Updated %d player_seasons documents in collection '%s'.",
             len(season_bulk_ops),

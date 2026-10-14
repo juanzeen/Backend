@@ -9,11 +9,12 @@ from ..dependencies import get_db
 
 file_handler = logging.FileHandler("weekly-report.log")
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[file_handler]
 )
 logger = logging.getLogger(__name__)
 
-DEFAULT_SEASON = os.getenv("CURRENT_SEASON", "2026-27")
+DEFAULT_SEASON = os.getenv("CURRENT_SEASON", "2025-26")
 
 
 async def sync_rosters(db: Any, season: str = DEFAULT_SEASON) -> int:
@@ -54,7 +55,7 @@ async def sync_rosters(db: Any, season: str = DEFAULT_SEASON) -> int:
             )
 
     if bulk_ops:
-        result = await db["players"].bulk_write(bulk_ops, ordered=False)
+        result = await db["players_cron_test"].bulk_write(bulk_ops, ordered=False)
         logger.info(
             "Roster sync updated %d players (matched: %d, modified: %d).",
             len(bulk_ops),
