@@ -186,10 +186,17 @@ async def test_sync_players():
     )
     mock_db.__getitem__.return_value = mock_db_collection
 
-    with patch(
-        "nba_api.stats.endpoints.leaguedashplayerstats.LeagueDashPlayerStats"
-    ) as mock_player_ep:
-        mock_player_ep.return_value.get_data_frames.return_value = [mock_players_df]
+    with (
+        patch(
+            "nba_api.stats.endpoints.leaguedashplayerstats.LeagueDashPlayerStats"
+        ) as mock_player_ep,
+        patch("nba_api.stats.endpoints.playergamelogs.PlayerGameLogs") as mock_logs_ep,
+    ):
+        mock_player_ep.return_value.get_data_frames.side_effect = [
+            [mock_players_df],
+            [mock_players_df],
+        ]
+        mock_logs_ep.return_value.get_data_frames.return_value = [pd.DataFrame()]
 
         result = await sync_players(db=mock_db, season="2024-25")
 
