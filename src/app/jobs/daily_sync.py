@@ -2,6 +2,7 @@ import asyncio
 import json
 import logging
 import os
+import sys
 import time
 from typing import Any
 import pandas as pd
@@ -18,10 +19,10 @@ from app.dependencies import get_db, get_redis
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[ logging.StreamHandler(sys.stdout)]
 )
 logger = logging.getLogger(__name__)
 
@@ -172,7 +173,6 @@ async def sync_teams(
                 "blk_allowed_per_game": float(o_row["OPP_BLK"]),
             },
         }
-        print(team_entry)
         team_data.append(team_entry)
 
     team_data.sort(key=lambda x: x["power_score"], reverse=True)
