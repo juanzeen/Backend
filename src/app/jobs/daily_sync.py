@@ -2,6 +2,7 @@ import asyncio
 import json
 import logging
 import os
+import sys
 import time
 from typing import Any
 import pandas as pd
@@ -18,11 +19,10 @@ from app.dependencies import get_db, get_redis
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-file_handler = logging.FileHandler("daily-report.log", mode="a", encoding="utf-8")
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[file_handler],
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 
@@ -173,7 +173,6 @@ async def sync_teams(
                 "blk_allowed_per_game": float(o_row["OPP_BLK"]),
             },
         }
-        print(team_entry)
         team_data.append(team_entry)
 
     team_data.sort(key=lambda x: x["power_score"], reverse=True)
@@ -305,8 +304,8 @@ async def sync_players(
 
     logs_df = playergamelogs.PlayerGameLogs(
         season_nullable=season,
-        date_from_nullable=date,
-        date_to_nullable=date,
+        date_from_nullable="2025-10-22",
+        date_to_nullable="2025-10-22",
     ).get_data_frames()[0]
 
     if logs_df.empty:
@@ -495,15 +494,16 @@ async def run_daily_sync(season: str | None = None) -> None:
     db = get_db()
     redis = get_redis()
 
-    await sync_teams(db=db, redis=redis, season=target_season)
+    st = await sync_teams(db=db, redis=redis, season=target_season)
     time.sleep(1.0)
 
-    await sync_players(db=db, season=target_season)
+    sp = await sync_players(db=db, season=target_season)
 
     total_elapsed = time.time() - start_total
     logger.info(
         "=== Daily NBA Sync Finished Successfully in %.2f seconds ===", total_elapsed
     )
+    return {"teams": st, "players": sp}
 
 
 if __name__ == "__main__":
