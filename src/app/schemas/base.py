@@ -21,6 +21,7 @@ class PaginationParams(BaseModel):
     page: int = Field(1, ge=1)
     limit: int = Field(10, gt=0, le=100)
 
+
 class StatsFilters(BaseModel):
     stat: Literal["pts", "ast", "reb", "stl", "blk"] | None = None
     period: Literal["season", "career"] | None = "career"
