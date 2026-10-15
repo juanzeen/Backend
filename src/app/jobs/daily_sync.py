@@ -18,11 +18,10 @@ from app.dependencies import get_db, get_redis
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-file_handler = logging.FileHandler("daily-report.log", mode="a", encoding="utf-8")
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[file_handler],
 )
 logger = logging.getLogger(__name__)
 
@@ -305,8 +304,8 @@ async def sync_players(
 
     logs_df = playergamelogs.PlayerGameLogs(
         season_nullable=season,
-        date_from_nullable=date,
-        date_to_nullable=date,
+        date_from_nullable="2025-10-22",
+        date_to_nullable="2025-10-22",
     ).get_data_frames()[0]
 
     if logs_df.empty:
