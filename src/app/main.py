@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from .dependencies import get_client, RedisDependency
-from .routers import historical_players, historical_records, players, teams
+from .routers import historical_players, historical_records, players, teams, jobs
 
 app = FastAPI()
 
@@ -8,6 +8,7 @@ app.include_router(historical_players.router, prefix="/api/v1")
 app.include_router(historical_records.router, prefix="/api/v1")
 app.include_router(players.router, prefix="/api/v1")
 app.include_router(teams.router, prefix="/api/v1")
+app.include_router(jobs.router, prefix="/api/v1")
 
 
 @app.get(
