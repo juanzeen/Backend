@@ -1,14 +1,16 @@
-from fastapi import APIRouter, Query, Path, HTTPException
+from fastapi import APIRouter, Query, Depends, Path, HTTPException
 from typing import Annotated
 from ..dependencies import DbDependency, RedisDependency
 from ..utils.cache import get_cached_or_db
 from ..utils.rate_limiter import rate_limit
+from ..utils.filter_map import get_filter_key
 from ..schemas.historical_players import HistoricalPlayer
 from ..schemas.base import (
     ResponseDict,
     ErrorResponseDict,
     PaginationParams,
     PaginationResponse,
+    StatsFilters,
 )
 import math
 
@@ -27,14 +29,18 @@ router = APIRouter(prefix="/historical-players", tags=["Historical Players"])
     dependencies=[rate_limit(40, 60)],
 )
 async def get_historical_players(
-    pagination: Annotated[PaginationParams, Query()], db: DbDependency
+    pagination: Annotated[PaginationParams, Depends()],
+    filter: Annotated[StatsFilters, Depends()],
+    db: DbDependency,
 ) -> PaginationResponse[HistoricalPlayer] | ErrorResponseDict:
     hp = db["historical_players"]
     limit = pagination.limit
     skip = (pagination.page - 1) * limit
     total_players = await hp.count_documents({})
     total_pages = math.ceil(total_players / limit)
-    cursor = hp.find({}).sort("_id", 1).skip(skip).limit(limit)
+    sort_key = get_filter_key("historical_players", filter.stat, filter.period)
+    sort_order = -1 if filter.order == "desc" else 1
+    cursor = hp.find({}).sort(sort_key, sort_order).skip(skip).limit(limit)
     players = await cursor.to_list()
     if not players:
         raise HTTPException(

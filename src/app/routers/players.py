@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends, Path, HTTPException, Query
+from fastapi import APIRouter, Path, HTTPException, Query, Depends
 from typing import Annotated
 from ..dependencies import DbDependency, RedisDependency
 from ..utils.cache import get_cached_or_db, get_cached, set_cache
 from ..utils.rate_limiter import rate_limit
+from ..utils.filter_map import get_filter_key
 from ..schemas.players import Player
 from ..schemas.player_seasons import PlayerSeason
 from ..schemas.predictions import SeasonPrediction, MatchupPrediction
@@ -11,6 +12,7 @@ from ..schemas.base import (
     ErrorResponseDict,
     PaginationResponse,
     PaginationParams,
+    StatsFilters,
 )
 from ..services.season_predictor import (
     calculate_player_year_prediction,
@@ -35,14 +37,18 @@ CURRENT_SEASON = "2026-27"
     dependencies=[rate_limit(40, 60)],
 )
 async def get_nba_players(
-    pagination: Annotated[PaginationParams, Query()], db: DbDependency
+    pagination: Annotated[PaginationParams, Depends()],
+    filter: Annotated[StatsFilters, Depends()],
+    db: DbDependency,
 ) -> PaginationResponse[Player] | ErrorResponseDict:
     np = db["players"]
     limit = pagination.limit
     skip = limit * (pagination.page - 1)
     total_players = await np.count_documents({})
     total_pages = math.ceil(total_players / limit)
-    cursor = np.find({}).sort("_id", 1).skip(skip).limit(limit)
+    sort_key = get_filter_key("players", filter.stat, filter.period)
+    sort_order = -1 if filter.order == "desc" else 1
+    cursor = np.find({}).sort(sort_key, sort_order).skip(skip).limit(limit)
     players = await cursor.to_list()
     if players and len(players) > 0:
         return {
