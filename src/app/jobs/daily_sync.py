@@ -12,6 +12,7 @@ from nba_api.stats.endpoints import (
     playergamelogs,
 )
 from nba_api.stats.static import teams
+from nba_api.stats.library.http import NBAStatsHTTP
 from pymongo import UpdateOne
 from app.dependencies import get_db, get_redis
 from datetime import datetime, timedelta
@@ -26,6 +27,16 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 DEFAULT_SEASON = os.getenv("CURRENT_SEASON", "2025-26")
+
+NBAStatsHTTP().headers.update(
+    {
+        "Origin": "https://www.nba.com",
+        "Referer": "https://www.nba.com/",
+        "x-nba-stats-origin": "stats",
+        "x-nba-stats-token": "true",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    }
+)
 
 
 # Helpers
