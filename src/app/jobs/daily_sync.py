@@ -22,7 +22,7 @@ from zoneinfo import ZoneInfo
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[ logging.StreamHandler(sys.stdout)]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 
@@ -494,15 +494,16 @@ async def run_daily_sync(season: str | None = None) -> None:
     db = get_db()
     redis = get_redis()
 
-    await sync_teams(db=db, redis=redis, season=target_season)
+    st = await sync_teams(db=db, redis=redis, season=target_season)
     time.sleep(1.0)
 
-    await sync_players(db=db, season=target_season)
+    sp = await sync_players(db=db, season=target_season)
 
     total_elapsed = time.time() - start_total
     logger.info(
         "=== Daily NBA Sync Finished Successfully in %.2f seconds ===", total_elapsed
     )
+    return {"teams": st, "players": sp}
 
 
 if __name__ == "__main__":
