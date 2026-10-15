@@ -24,7 +24,7 @@ def verify_cron_secret(authorization: str = Header(None)):
         raise HTTPException(status_code=403, detail={"message": "Invalid token."})
 
 
-@router.post("/dayly-sync", status_code=200)
+@router.post("/daily-sync", status_code=200)
 async def dayly_sync_job(auth: None = Depends(verify_cron_secret)):
     res = await run_daily_sync()
     return {"message": "Daily job successfully executed.", "data": res}
