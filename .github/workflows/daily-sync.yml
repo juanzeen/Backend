@@ -13,8 +13,7 @@ jobs:
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          curl -f -s -S -X POST "https://nba-fantastic-
-          api.fly.dev/api/v1/jobs/daily-sync" \
+          curl -f -s -S -X POST "https://nba-fantastic-api.fly.dev/api/v1/jobs/daily-sync" \
             -H "Authorization: Bearer $CRON_SECRET" \
             -H "Content-Type: application/json" \
             --max-time 180 | jq .
