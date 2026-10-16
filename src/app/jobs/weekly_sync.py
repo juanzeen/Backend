@@ -2,20 +2,20 @@ import asyncio
 import logging
 import os
 import time
+import sys
 from typing import Any
 from nba_api.stats.endpoints import commonallplayers, commonplayerinfo
 from pymongo import UpdateOne
 from ..dependencies import get_db
 
-file_handler = logging.FileHandler("weekly-report.log")
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[file_handler],
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 
-DEFAULT_SEASON = os.getenv("CURRENT_SEASON", "2025-26")
+DEFAULT_SEASON = os.getenv("CURRENT_SEASON", "2026-27")
 
 
 async def sync_rosters(db: Any, season: str = DEFAULT_SEASON) -> int:
