@@ -92,7 +92,7 @@ def build_season_dict(
 
 def populate_historical_players():
     """Populate base historical player profiles from CSV into MongoDB."""
-    file_path = "nba_legends_2.csv"
+    file_path = "nba_legends.csv"
 
     if not os.path.exists(file_path):
         print("CSV file not found!")
@@ -176,7 +176,7 @@ def populate_historical_players():
 
 def populate_historical_players_seasons():
     """Fetch season-by-season stats from NBA API for each legend and save formatted seasons."""
-    file_path = "nba_legends_2.csv"
+    file_path = "nba_legends.csv"
 
     if not os.path.exists(file_path):
         print("CSV file not found!")

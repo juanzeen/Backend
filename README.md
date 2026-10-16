@@ -9,22 +9,31 @@
 [![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)](https://docs.pytest.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-A high-performance backend catalog and analytics REST API for NBA basketball data. **NBA FANtastic API** provides structured endpoints for exploring historical legends, active NBA rosters, in-depth season metrics, all-time records, and upcoming game predictions.
+A high-performance backend catalog and analytics REST API for NBA basketball data. **NBA FANtastic API** provides structured endpoints for exploring historical legends, active NBA rosters, in-depth season metrics, team power rankings, all-time records, and upcoming game predictions.
 
-Built with **FastAPI**, **MongoDB (PyMongo Async)**, and **Redis**, utilizing **uv** for blazing-fast Python package management.
+Built with **FastAPI**, **MongoDB (PyMongo Async)**, and **Redis**, utilizing **uv** for fast Python package management and **Fly.io** for cloud deployment.
+
+---
+
+## Motivation & Objective
+
+Basketball data is often scattered across multiple slow, cluttered, or overly complex platforms. The main objective of **NBA FANtastic API** is to **create a unified system where you can easily find and query the basketball data that actually matters**—from all-time historical benchmarks and career peaks to current team efficiency metrics, head-to-head player splits, and statistical game projections.
+
+Whether for basketball enthusiasts, fantasy analysis, or powering client applications, the system curates and structures the most relevant NBA metrics into fast, predictable endpoints.
 
 ---
 
 ## Features
 
-- **Historical NBA Legends**: Search and paginate archives of all-time NBA greats, including career totals, peaks, and honors.
-- **All-Time Records**: Query historical NBA benchmarks (scoring, assists, rebounds, etc.) by record category.
-- **Active NBA Players**: Explore active rosters, player bios, team affiliations, and career stats.
-- **Season & Game Logs**: Query season-by-season player averages, single-game peaks, and performance splits against specific opponents.
-- **Redis Caching Layer**: Cache-aside caching strategy with dynamic TTLs to deliver sub-millisecond response times for frequent queries.
-- **Standardized Pagination**: Reusable generic pagination models with full navigation metadata (`total_items`, `total_pages`, `has_next`, `has_previous`).
-- **Multi-Service Health Checks**: Integrated health endpoint verifying live connectivity to both MongoDB and Redis.
-- **Comprehensive Test Suite**: 100% async test coverage using Pytest, AnyIO, HTTPX, and isolated mock fixtures.
+- **Active & Historical Players**: Browse active rosters and all-time NBA legends with career totals, averages, single-game peaks, honors, and dynamic stat sorting (`pts`, `ast`, `reb`, `stl`, `blk`).
+- **Season & Game Logs**: Query season-by-season player splits, game logs, and performance against specific franchises.
+- **Teams & Power Rankings**: Franchise profiles, standings, offensive/defensive ratings, pace, opponent stats, and custom-calculated power rankings/tiers.
+- **Statistical Predictions**:
+  - **Season Projections**: Marcel-inspired projections with age curve adjustments and confidence intervals.
+  - **Matchup Predictions**: Single-game player projections factoring in opponent defensive metrics, pace, and home-court advantage.
+- **All-Time Records**: Historical NBA leaderboards across major statistical categories.
+- **Automated Sync Jobs**: Protected webhook endpoints triggered by GitHub Actions crons for daily stats/standings updates and weekly roster syncs.
+- **Caching & Rate Limiting**: Redis cache-aside layer with dynamic TTLs and per-endpoint rate limiting.
 
 ---
 
@@ -35,174 +44,100 @@ Built with **FastAPI**, **MongoDB (PyMongo Async)**, and **Redis**, utilizing **
 | **Framework** | [FastAPI](https://fastapi.tiangolo.com/) (Python 3.14+) |
 | **Data Validation** | [Pydantic v2](https://docs.pydantic.dev/) |
 | **Primary Database** | [MongoDB](https://www.mongodb.com/) (Async PyMongo) |
-| **Caching Layer** | [Redis](https://redis.io/) (`redis.asyncio`) |
+| **Caching & Rate Limit** | [Redis](https://redis.io/) (`redis.asyncio`) |
+| **Data Ingestion** | [`nba-api`](https://github.com/swar/nba_api), pandas |
 | **Package Manager** | [uv](https://docs.astral.sh/uv/) by Astral |
-| **Containerization** | [Docker](https://www.docker.com/) & Docker Compose |
 | **Testing** | [pytest](https://docs.pytest.org/), AnyIO, HTTPX |
-| **Data Scraping** | [`nba-api`](https://github.com/swar/nba_api), pandas |
+| **Deployment & CI/CD** | [Docker](https://www.docker.com/), [Fly.io](https://fly.io/), GitHub Actions |
 
 ---
 
-## Getting Started
+## Quick Start
 
 ### Prerequisites
+- Python 3.14+ & [uv](https://docs.astral.sh/uv/)
+- [Docker & Docker Compose](https://www.docker.com/)
 
-- Python 3.14+ (or managed via `uv`)
-- [uv](https://docs.astral.sh/uv/) installed
-- [Docker & Docker Compose](https://www.docker.com/) (for MongoDB & Redis)
+### 1. Setup
 
----
+```bash
+git clone https://github.com/juanzeen/Nba-FANtastic-API.git
+cd Nba-FANtastic-API
+uv sync
+cp .env.example .env
+```
 
-### 1. Installation
+Required `.env` variables:
+```env
+MONGO_URL=mongodb://nba_fantastic:superpasswordfornbafantastic@localhost:27017/nba_fantastic?authSource=admin&directConnection=true
+DATABASE_NAME=nba_fantastic
+REDIS_URL=redis://localhost:6379
+CRON_SECRET=your_secret_token
+```
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/juanzeen/Nba-FANtastic-API.git
-   cd Nba-FANtastic-API
-   ```
+### 2. Run the Application
 
-2. **Install dependencies with `uv`**:
-   ```bash
-   uv sync
-   ```
-
-3. **Configure environment variables**:
-   Create a `.env` file in the root directory:
-   ```bash
-   cp .env.example .env
-   ```
-   Example configuration for local development:
-   ```env
-   # MongoDB Configuration
-   MONGO_URL=mongodb://nba_fantastic:superpasswordfornbafantastic@localhost:27017/nba_fantastic?authSource=admin&directConnection=true
-   DATABASE_NAME=nba_fantastic
-   MONGO_DB_USER=nba_fantastic
-   MONGO_DB_PASSWORD=superpasswordfornbafantastic
-   MONGO_DB_PORT=27017
-
-   # Redis Configuration
-   REDIS_URL=redis://localhost:6379
-   REDIS_PORT=6379
-   REDIS_PASSWORD=nbafantastic123password
-   ```
-
----
-
-### 2. Running Services with Docker
-
-You can run the entire stack (FastAPI, MongoDB, and Redis) inside Docker, or run just the databases in Docker while developing locally.
-
-#### Option A: Run the Entire Stack in Docker (API + MongoDB + Redis)
-
-Build and start all services in the background:
+**Option A — Full Stack in Docker:**
 ```bash
 docker compose up -d --build
 ```
 
-Or start specifically the API container (Docker will automatically start its dependencies):
-```bash
-docker compose up -d --build api
-```
-
-Check running containers:
-```bash
-docker compose ps
-```
-
-Follow real-time logs from the API:
-```bash
-docker compose logs -f api
-```
-
-Stop all services:
-```bash
-docker compose down
-```
-
----
-
-#### Option B: Run Only Databases in Docker (Hybrid Development)
-
-Start only MongoDB and Redis in the background (useful when developing the API locally with `uv`):
+**Option B — Local Development (Databases in Docker):**
 ```bash
 docker compose up -d mongodb redis
+uv run python seed/populate.py          # Optional: seed initial dataset
+uv run fastapi dev src/app/main.py      # Starts API at http://localhost:8000
 ```
 
-Stop the databases:
-```bash
-docker compose stop mongodb redis
-```
+- **Swagger UI**: `http://localhost:8000/docs`
+- **ReDoc**: `http://localhost:8000/redoc`
 
----
-
-### 3. Database Seeding (Optional)
-
-To ingest and populate your local MongoDB instance with legends and active player data:
-
-```bash
-uv run python seed/populate.py
-```
-
----
-
-### 4. Running the API Locally (Without Docker for API)
-
-If you chose **Option B** above (running only MongoDB & Redis in Docker), start the FastAPI development server locally with live reload:
-
-```bash
-uv run fastapi dev src/app/main.py
-```
-
-- **Interactive API Docs (Swagger UI)**: [http://localhost:8000/docs](http://localhost:8000/docs)
-- **Alternative Docs (ReDoc)**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
-- **Health Check Endpoint**: [http://localhost:8000/](http://localhost:8000/)
-
----
-
-### 5. Running the Tests
-
-Execute the automated test suite with `pytest`:
+### 3. Run Tests
 
 ```bash
 uv run pytest
 ```
 
-Run tests with verbose output:
-```bash
-uv run pytest -v
-```
-
 ---
 
-## API Endpoints Reference
+## API Endpoints
 
-### System & Health
+All resource routes are prefixed with `/api/v1`.
+
+### System & Cron Jobs
+| Method | Endpoint | Description | Cache / Auth |
+| :--- | :--- | :--- | :---: |
+| `GET` | `/` | Health check (API, MongoDB, Redis) | — |
+| `POST` | `/api/v1/jobs/daily-sync` | Trigger daily teams, players & game logs sync | 🔒 Bearer |
+| `POST` | `/api/v1/jobs/weekly-sync` | Trigger weekly team roster sync | 🔒 Bearer |
+
+### Current NBA Players & Predictions
 | Method | Endpoint | Description | Cache |
 | :--- | :--- | :--- | :---: |
-| `GET` | `/` | Service health status (API, MongoDB, Redis) | — |
+| `GET` | `/api/v1/players/` | List active players (paginated & sortable by `stat`, `period`, `order`) | — |
+| `GET` | `/api/v1/players/{id}` | Get active player by ID | ⚡ Redis |
+| `GET` | `/api/v1/players/search/{slug}` | Get active player by slug (e.g. `lebron-james`) | ⚡ Redis |
+| `GET` | `/api/v1/players/team/{team_abb}` | List active players by team abbreviation (e.g. `LAL`) | ⚡ Redis |
+| `GET` | `/api/v1/players/{player_id}/seasons` | List seasons for a player (paginated) | — |
+| `GET` | `/api/v1/players/{player_id}/seasons/{season_year}` | Get detailed season log (e.g. `2024-25`) | ⚡ Redis |
+| `GET` | `/api/v1/players/{id}/predictions/season` | Projected season averages & confidence intervals | ⚡ Redis |
+| `GET` | `/api/v1/players/{id}/predictions/matchup/{opponent_team_id}` | Single-game projection vs. opponent (`?is_home=true`) | ⚡ Redis |
 
-### Historical Players
+### NBA Teams
 | Method | Endpoint | Description | Cache |
 | :--- | :--- | :--- | :---: |
-| `GET` | `/historical-players/` | List all historical players (paginated: `page`, `limit`) | — |
-| `GET` | `/historical-players/{id}` | Get historical player by numeric ID | — |
-| `GET` | `/historical-players/search/{slug}` | Get historical player by slug (e.g. `michael-jordan`) | — |
+| `GET` | `/api/v1/teams/` | List NBA teams ordered by power ranking (paginated) | — |
+| `GET` | `/api/v1/teams/{id}` | Get team profile, metrics & power ranking by ID | ⚡ Redis |
+| `GET` | `/api/v1/teams/search/{abb}/` | Get team by 3-letter abbreviation (e.g. `BOS`) | ⚡ Redis |
 
-### Historical Records
+### Historical Players & Records
 | Method | Endpoint | Description | Cache |
 | :--- | :--- | :--- | :---: |
-| `GET` | `/historical-records/` | Get all all-time NBA records | ⚡ Redis |
-| `GET` | `/historical-records/{category}` | Get record by category (e.g. `ALL_TIME_PTS`) | ⚡ Redis |
-
-### Current NBA Players
-| Method | Endpoint | Description | Cache |
-| :--- | :--- | :--- | :---: |
-| `GET` | `/players/` | List active players (paginated: `page`, `limit`) | — |
-| `GET` | `/players/{id}` | Get player profile and career stats by ID | — |
-| `GET` | `/players/search/{slug}` | Get active player by slug (e.g. `precious-achiuwa`) | — |
-| `GET` | `/players/team/{team_abb}` | List all active players for a team (e.g. `MIA`, `LAL`) | ⚡ Redis |
-| `GET` | `/players/{id}/seasons` | List seasons for a player (paginated) | — |
-| `GET` | `/players/{id}/seasons/{season_year}` | Get detailed season log (e.g. `2021-22`) | ⚡ Redis |
+| `GET` | `/api/v1/historical-players/` | List historical legends (paginated & sortable) | — |
+| `GET` | `/api/v1/historical-players/{id}` | Get historical player by ID | ⚡ Redis |
+| `GET` | `/api/v1/historical-players/search/{slug}` | Get historical player by slug (e.g. `michael-jordan`) | ⚡ Redis |
+| `GET` | `/api/v1/historical-records/` | List all-time NBA records | ⚡ Redis |
+| `GET` | `/api/v1/historical-records/{category}` | Get record by category (e.g. `ALL_TIME_PTS`) | ⚡ Redis |
 
 ---
 
@@ -210,42 +145,25 @@ uv run pytest -v
 
 ```text
 Nba-FANtastic-API/
-├── Dockerfile                 # Multi-stage container build (dev, builder, prod)
-├── docker-compose.yaml        # MongoDB Atlas Local & Redis service definitions
-├── pyproject.toml             # uv & project dependencies
-├── README.md                  # Project documentation
-├── uv.lock                    # Dependency lockfile
-├── seed/                      # Data extraction & database migration scripts
-│   ├── extractor.py           # Scraping pipeline using nba_api
-│   ├── populate.py            # MongoDB batch seeding script
-│   └── *.csv                  # Static datasets (legends, active players, records)
-└── src/
-    └── app/                   # FastAPI application package
-        ├── main.py            # App instantiation, router inclusion & health check
-        ├── dependencies.py    # Database & Redis dependency providers
-        ├── routers/           # API route controllers
-        │   ├── historical_players.py
-        │   ├── historical_records.py
-        │   └── nba_players.py
-        ├── schemas/           # Pydantic v2 data models
-        │   ├── base.py        # Generic responses & pagination schemas
-        │   ├── historical_players.py
-        │   ├── historical_records.py
-        │   ├── nba_players.py
-        │   └── player_seasons.py
-        ├── utils/             # Helper utilities
-        │   ├── cache.py       # Cache-aside helper (get_cached_or_db)
-        └── tests/             # Automated test suite
-            ├── conftest.py    # Shared Pytest fixtures (mock_redis, etc.)
-            ├── test_api_health.py
-            ├── test_historical_players.py
-            ├── test_historical_records.py
-            ├── test_nba_players.py
-            └── test_nba_players_seasons.py
+├── .github/workflows/         # CI/CD (main.yaml) & scheduled sync triggers
+├── Dockerfile                 # Multi-stage Docker build
+├── docker-compose.yaml        # Local MongoDB & Redis services
+├── fly.toml                   # Fly.io deployment configuration
+├── pyproject.toml             # Project metadata & dependencies (uv)
+├── seed/                      # Data scraping (extractor.py), seeding (populate.py) & CSV/JSON datasets
+└── src/app/
+    ├── main.py                # FastAPI app initialization & health check
+    ├── dependencies.py        # Async MongoDB & Redis client dependencies
+    ├── jobs/                  # Scheduled sync logic (daily_sync.py, weekly_sync.py)
+    ├── routers/               # Route handlers (players, teams, historical_*, jobs)
+    ├── schemas/               # Pydantic v2 models (players, teams, predictions, seasons, base)
+    ├── services/              # Prediction engines (season_predictor.py, matchup_predictor.py)
+    ├── utils/                 # Redis cache helper, rate limiter & stat filter mapping
+    └── tests/                 # Async Pytest suite (120+ tests)
 ```
 
 ---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+Licensed under the [MIT License](LICENSE).
